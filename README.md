@@ -1,3 +1,8 @@
+# Demo project - Nike store
+
+This project is based on the website from Nike (https://www.nike.com/).
+All images used on this website belong the their original owners, Nike and TablerIcons(https://tablericons.com/).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
