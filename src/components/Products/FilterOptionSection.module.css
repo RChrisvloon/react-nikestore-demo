@@ -1,0 +1,26 @@
+/* Gender-filters */
+.filter-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-section-title_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.filter-section-title {
+  align-items: center;
+  text-align: center;
+}
+
+.filter-section-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.is-hidden{
+  display: none;
+}

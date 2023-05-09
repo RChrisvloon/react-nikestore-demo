@@ -1,0 +1,20 @@
+.checkoutGroup {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.checkoutGroup a {
+  padding: 6px;
+	margin-right: 12px;
+}
+
+.checkoutGroup a img {
+  height: 24px;
+  width: 24px;
+}
+
+.checkoutGroup :hover {
+  background-color: #e5e5e5;
+  border-radius: 50%;
+}

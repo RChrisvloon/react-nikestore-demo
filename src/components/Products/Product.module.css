@@ -1,0 +1,38 @@
+.product-card {
+	min-width: 185px;
+	max-width: 33.33333333%;
+	padding: 0 8px 0 8px;
+}
+
+.product-card_img {
+	width: 100%;
+  margin-bottom: 1rem;
+	text-align: center;
+}
+
+.product-card_info {
+  min-height: 220px;
+}
+
+.product-card_title{
+  color: black;
+  padding-bottom: 5px;
+}
+
+.product-card_subtitle {
+  color: grey;
+}
+
+.product-card_priceinfo {
+  padding-top: 10px
+}
+
+.priceinfo_discount {
+  color: green;
+  padding-top: 1rem;
+}
+
+.discounted {
+  text-decoration: line-through;
+  color: grey;
+}

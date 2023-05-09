@@ -1,0 +1,24 @@
+.categoryMenu {
+	margin: 0 auto;
+	height: 60px;
+	padding: 2px;
+	max-width: 1255px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+
+.categoryMenu li {
+	max-height: 90%;
+}
+
+.categoryMenu li button {
+	color: black;
+	font-weight: 1000;
+	padding: 12px;
+	border-bottom: 2px solid transparent;
+	transition: border-color 0.1s, color 0.1s;
+}
+.categoryMenu li button:hover {
+	border-bottom: 2px solid black;
+}

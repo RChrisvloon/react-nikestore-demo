@@ -1,0 +1,9 @@
+.filter-section_item {
+  display: flex;
+  flex-direction: row;
+}
+
+.filter-section_item input[type="checkbox"] {
+  margin: 0 5px 0 0;
+  width: 20px;
+}

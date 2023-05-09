@@ -1,0 +1,24 @@
+.results-header {
+	padding: 0 48px 0 48px;
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.results-header h1 {
+	font-weight: 500;
+	font-size: 24px;
+	text-align: left;
+}
+
+.results-header-buttons {
+	display: flex;
+	gap: 2rem;
+}
+
+.results-header-buttons div {
+	display: flex;
+  align-items: center;
+	gap: 8px;
+  cursor: pointer;
+}

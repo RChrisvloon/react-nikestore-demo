@@ -1,0 +1,29 @@
+.scroller {
+	min-width: 260px;
+	position: sticky;
+	overflow: hidden scroll;
+	padding: 0 1em 1em 48px;
+}
+
+.scroller_pickup {
+	display: flex;
+	gap: 1rem;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid rgb(229, 229, 229);
+  align-items: center;
+}
+
+/* Generic filter-styling */
+.filters > div {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 1rem;
+}
+
+/* Categories-filter */
+.category-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

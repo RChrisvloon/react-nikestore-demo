@@ -1,0 +1,11 @@
+.slide {
+	display: flex;
+	flex: 0 0 100%;
+	transition: transform 1s;
+	padding: 1rem;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+	z-index: 1;
+	align-items: center;
+}
