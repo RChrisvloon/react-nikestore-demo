@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import classes from './Scroller.module.css';
-import Switch from '../UI/Switch';
+import Switch from '../../UI/Switch';
 import FilterOptionSection from './FilterOptionSection';
 import FilterOption from './FilterOption';
 

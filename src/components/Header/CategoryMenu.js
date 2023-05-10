@@ -30,11 +30,7 @@ const menuButtons = MENU_BUTTONS.map((menuButton) => {
 });
 
 const CategoryMenu = (props) => {
-	return (
-		<ul className={classes.categoryMenu}>
-			{menuButtons}
-		</ul>
-	);
+	return <ul className={classes.categoryMenu}>{menuButtons}</ul>;
 };
 
 export default CategoryMenu;

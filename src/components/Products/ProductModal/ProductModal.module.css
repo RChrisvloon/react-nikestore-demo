@@ -1,0 +1,19 @@
+.modal-header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.modal-header_closeBtn {
+  align-self: flex-end;
+}
+
+.modal-product_image{
+  width: 100%;
+}

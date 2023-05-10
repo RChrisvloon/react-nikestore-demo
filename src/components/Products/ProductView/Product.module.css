@@ -5,9 +5,22 @@
 }
 
 .product-card_img {
-	width: 100%;
+  max-width: 505px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
   margin-bottom: 1rem;
-	text-align: center;
+  transition: opacity 0.5s;
+}
+
+.product-card:hover{
+  cursor: pointer;
+}
+
+.product-card:hover > img{
+  opacity: 0.5;
+  transition: 0.5s;
 }
 
 .product-card_info {

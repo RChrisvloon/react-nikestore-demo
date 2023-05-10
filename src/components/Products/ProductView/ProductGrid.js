@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import classes from './ProductGrid.module.css';
 import Product from './Product';
-
+import ProductModal from '../ProductModal/ProductModal';
 
 const DUMMY_PRODUCTS = [
 	{
@@ -44,21 +44,53 @@ const DUMMY_PRODUCTS = [
 	},
 ];
 
-const productsList = DUMMY_PRODUCTS.map((item) => {
-	return (
-		<Product
-      key={item.title}
-			title={item.title}
-			description={item.description}
-			price={item.price}
-			image={item.img_url}
-			discount={item.discount}
-		/>
-	);
-});
-
 const ProductGrid = (props) => {
-	return <div className={classes['product-grid']}>{productsList}</div>;
+	const [productModalIsShown, setProductModalIsShown] = useState(false);
+	const [currentProduct, setCurrentProduct] = useState({
+		key: null,
+		title: null,
+		description: null,
+		price: null,
+		image: null,
+		discount: null,
+	});
+
+	const openModal = (item) => {
+		setCurrentProduct({
+			key: item.key,
+			title: item.title,
+			description: item.description,
+			price: item.price,
+			image: item.image,
+			discount: item.discount,
+		});
+		setProductModalIsShown(true);
+	};
+
+	const closeModal = () => {
+		setProductModalIsShown(false);
+	};
+
+	const productsList = DUMMY_PRODUCTS.map((item) => {
+		return (
+			<Product
+				key={item.title}
+				title={item.title}
+				description={item.description}
+				price={item.price}
+				image={item.img_url}
+				discount={item.discount}
+				openModal={openModal}
+			/>
+		);
+	});
+
+	return (
+		<Fragment>
+			{productModalIsShown && <ProductModal product={currentProduct} onClose={closeModal} />}
+			<div className={classes['product-grid']}>{productsList}</div>
+		</Fragment>
+	);
 };
 
 export default ProductGrid;

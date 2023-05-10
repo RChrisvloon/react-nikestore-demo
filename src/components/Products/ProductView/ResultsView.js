@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductGrid from './ProductGrid';
-import Scroller from './Scroller';
+import Scroller from '../ProductFilters/Scroller';
 import classes from './ResultsView.module.css';
 
 // Import svg file(s)
