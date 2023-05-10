@@ -37,3 +37,7 @@
   opacity: 0.5;
   transition: 0.2s;
 }
+
+.is-hidden {
+  display: none;
+}

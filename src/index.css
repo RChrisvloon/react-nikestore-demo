@@ -183,3 +183,7 @@ html {
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
 }
+
+.is-hidden{
+  display: none;
+}

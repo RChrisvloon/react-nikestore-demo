@@ -25,7 +25,7 @@ const MENU_BUTTONS = [
 // Return li-element for each category
 const menuButtons = MENU_BUTTONS.map((menuButton) => {
 	return (
-		<li>
+		<li key={menuButton.name}>
 			<button>{menuButton.name}</button>
 		</li>
 	);

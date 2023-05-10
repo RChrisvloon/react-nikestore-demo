@@ -1,19 +1,47 @@
-.modal-header{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+.modal-header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
 }
 
 .modal-header h1 {
-  font-size: 24px;
-  font-weight: 500;
+	font-size: 24px;
+	font-weight: 500;
 }
 
 .modal-header_closeBtn {
-  align-self: flex-end;
+	align-self: flex-end;
+	font-weight: 1000;
+	cursor: pointer;
 }
 
-.modal-product_image{
-  width: 100%;
+.modal-images_wrapper{
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.modal-product_image {
+	width: 100%;
+}
+
+.thumbnail-column{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.thumbnail_img {
+	aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+	width: 60px;
+	border-radius: 4px;
+  transition: 0.2s;
+}
+
+.thumbnail_img:hover {
+  filter: brightness(0.9);
+  transition: 0.2s;
 }
