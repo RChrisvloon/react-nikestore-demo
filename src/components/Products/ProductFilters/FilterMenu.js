@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
-import classes from './Scroller.module.css';
+import classes from './FilterMenu.module.css';
 import Switch from '../../UI/Switch';
 import FilterOptionSection from './FilterOptionSection';
 import FilterOption from './FilterOption';
 
-const Scroller = (props) => {
+// FilterMenu shown on left-side of ProductGrid
+const FilterMenu = (props) => {
 	return (
 		<Fragment>
 			<div className={classes.scroller}>
@@ -38,4 +39,4 @@ const Scroller = (props) => {
 	);
 };
 
-export default Scroller;
+export default FilterMenu;

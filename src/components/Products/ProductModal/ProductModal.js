@@ -3,7 +3,7 @@ import Modal from '../../UI/Modal';
 import classes from './ProductModal.module.css';
 
 const ProductModal = (props) => {
-	// Destructure passed product
+	// Destructure passed product in ProductGrid-component (Gonna be replaced with redux)
 	const { title, description, price, image, discount } = props.product;
 
 	return (

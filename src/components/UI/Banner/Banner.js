@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classes from './Banner.module.css';
 
 // Import svg file(s)
-import leftArrow from '../../assets/left-arrow.svg';
-import rightArrow from '../../assets/right-arrow.svg';
+import leftArrow from '../../../assets/left-arrow.svg';
+import rightArrow from '../../../assets/right-arrow.svg';
 import Slide from './Slide';
 
+// Default Slides for the banner-component
 const SLIDES = [
 	{
 		id: 1,
@@ -33,21 +34,23 @@ const Banner = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 
 	const nextSlideHandler = () => {
-		// const amountOfSlides = document.getElementById('top-banner').children.length;
-
+    // Right-arrow is clicked & last slide is reached
 		if (currentSlide === SLIDES.length - 1) {
+      // Go to first slide
 			setCurrentSlide(0);
 		} else {
+      // Otherwise, go to next slide
 			setCurrentSlide((prevState) => prevState + 1);
 		}
 	};
 
 	const prevSlideHandler = () => {
-		// const amountOfSlides = document.getElementById('top-banner').children.length;
-
+    // Left-arrow is clicked & user is on the first slide
 		if (currentSlide === 0) {
+      // Go to last slide
 			setCurrentSlide(SLIDES.length - 1);
 		} else {
+      // Otherwise, go back 1 slide
 			setCurrentSlide((prevState) => prevState - 1);
 		}
 	};

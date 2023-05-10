@@ -1,5 +1,6 @@
 import classes from './CategoryMenu.module.css';
 
+// Default categories
 const MENU_BUTTONS = [
 	{
 		name: 'New & Featured',
@@ -21,6 +22,7 @@ const MENU_BUTTONS = [
 	},
 ];
 
+// Return li-element for each category
 const menuButtons = MENU_BUTTONS.map((menuButton) => {
 	return (
 		<li>

@@ -3,6 +3,7 @@ import classes from './ProductGrid.module.css';
 import Product from './Product';
 import ProductModal from '../ProductModal/ProductModal';
 
+// Default Products - WILL BE API BASED LATER PROBABLY
 const DUMMY_PRODUCTS = [
 	{
 		title: 'Nike Pegasus 40',
@@ -44,17 +45,22 @@ const DUMMY_PRODUCTS = [
 	},
 ];
 
+// DEFAULT STATE FOR currentProduct-useState
+const EMPTY_PRODUCTSTATE = {
+	key: null,
+	title: null,
+	description: null,
+	price: null,
+	image: null,
+	discount: null,
+};
+
+// View that shoes all products
 const ProductGrid = (props) => {
 	const [productModalIsShown, setProductModalIsShown] = useState(false);
-	const [currentProduct, setCurrentProduct] = useState({
-		key: null,
-		title: null,
-		description: null,
-		price: null,
-		image: null,
-		discount: null,
-	});
+	const [currentProduct, setCurrentProduct] = useState(EMPTY_PRODUCTSTATE);
 
+  // Open Modal-window & Pass clicked product to ProductModal
 	const openModal = (item) => {
 		setCurrentProduct({
 			key: item.key,
@@ -71,6 +77,7 @@ const ProductGrid = (props) => {
 		setProductModalIsShown(false);
 	};
 
+  // Return Product-component for each dummy product
 	const productsList = DUMMY_PRODUCTS.map((item) => {
 		return (
 			<Product

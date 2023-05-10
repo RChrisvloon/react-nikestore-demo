@@ -4,6 +4,7 @@ import classes from './CheckoutGroup.module.css';
 import basket from '../../assets/basket.svg';
 import heart from '../../assets/heart.svg';
 
+// Consists of 2 icons; heart and basket
 const CheckoutGroup = (props) => {
 	return (
 		<div className={classes.checkoutGroup}>

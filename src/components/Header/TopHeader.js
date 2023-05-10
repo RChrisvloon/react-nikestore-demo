@@ -17,7 +17,7 @@ const TopHeader = (props) => {
 					</li>
 					<li className={classes.brandMenu_item}>
 						<a href={'/'}>
-							<img src={converse} alt="Icon of Jordan" />
+							<img src={converse} alt="Icon of Converse" />
 						</a>
 					</li>
 				</ul>

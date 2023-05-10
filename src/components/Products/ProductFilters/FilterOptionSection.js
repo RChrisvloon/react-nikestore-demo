@@ -4,6 +4,7 @@ import classes from './FilterOptionSection.module.css';
 // Import svg file(s)
 import downArrow from '../../../assets/down-arrow.svg';
 
+// Parent-element for all FilterOption-components
 const FilterOptionSection = (props) => {
   const [showCategory, setShowCategory] = useState(true);
 

@@ -1,14 +1,11 @@
-import React from 'react';
 import ProductGrid from './ProductGrid';
-import Scroller from '../ProductFilters/Scroller';
+import FilterMenu from '../ProductFilters/FilterMenu';
 import classes from './ResultsView.module.css';
-
-// Import svg file(s)
 
 const ResultsView = (props) => {
 	return (
 		<div className={classes['results-container']}>
-			{props.showScroller && <Scroller />}
+			{props.showFilterMenu && <FilterMenu />}
 			<ProductGrid />
 		</div>
 	);

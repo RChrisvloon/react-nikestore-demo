@@ -2,12 +2,14 @@ import React from 'react';
 import classes from './ResultsHeader.module.css';
 
 // Import svg file(s)
-import downArrow from '../../assets/down-arrow.svg';
-import settings from '../../assets/settings.svg';
+import downArrow from '../../../assets/down-arrow.svg';
+import settings from '../../../assets/settings.svg';
 
+// Title and filters shown above the productgrid
 const ResultsHeader = (props) => {
+  // Toggle if filterMenu is shown
   const toggleFilterHandler = () => {
-    props.toggleScroller();
+    props.toggleFilterMenu();
   }
 
 	return (
@@ -15,7 +17,7 @@ const ResultsHeader = (props) => {
 			<h1>Men's Shoes & Sneakers (785)</h1>
 			<div className={classes["results-header-buttons"]}>
 				<div onClick={toggleFilterHandler}>
-					<p>{props.showScroller ? 'Hide' : 'Show' } Filters</p>
+					<p>{props.showFilterMenu ? 'Hide' : 'Show' } Filters</p>
 					<img src={settings} alt="Settings icon"/>
 				</div>
 				<div>

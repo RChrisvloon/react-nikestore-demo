@@ -6,8 +6,9 @@ import TopHeader from './TopHeader';
 import nike from '../../assets/nike.svg';
 import CheckoutGroup from './CheckoutGroup';
 import CategoryMenu from './CategoryMenu';
-import Banner from '../UI/Banner';
+import Banner from '../UI/Banner/Banner';
 
+// Header consists of 3 parts: Topheader, header(img, CategoryMenu, CheckoutGroup) & Banner
 const Header = (props) => {
 	return (
 		<div className={classes.container}>
