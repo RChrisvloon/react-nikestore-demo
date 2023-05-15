@@ -58,3 +58,10 @@
   font-size: 12px;
   font-weight: 1000;
 }
+
+/* Small screens */
+@media only screen and (max-width: 960px) {
+  .topHeader {
+    display: none;
+  }
+}

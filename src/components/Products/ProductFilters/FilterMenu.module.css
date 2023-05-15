@@ -3,6 +3,7 @@
   width: 260px;
 	padding: 0 1em 1em 48px;
   transition: 0.4s;
+  transform: translateX(0);
 }
 
 .filterMenu_invisible {

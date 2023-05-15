@@ -19,6 +19,14 @@
 	border-bottom: 2px solid transparent;
 	transition: border-color 0.1s, color 0.1s;
 }
+
 .categoryMenu li button:hover {
 	border-bottom: 2px solid black;
+}
+
+/* Small screens */
+@media only screen and (max-width: 960px) {
+  .categoryMenu {
+    visibility: hidden;
+  }
 }

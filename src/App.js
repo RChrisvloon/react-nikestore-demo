@@ -6,7 +6,8 @@ import ResultsView from './components/Products/ProductView/ResultsView';
 import ResultsHeader from './components/Products/ProductView/ResultsHeader';
 
 function App() {
-  // State for showing/hiding filtermenu on left-side
+  // IMPROVE // ResultsHeader & ResultsView should be handled in it's own page-component.
+  // React Router will fix this problem and slim down App.js
 	const [filterMenuisShown, setFilterMenuIsShown] = useState(true);
 
 	const toggleFilterMenu = () => {

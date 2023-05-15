@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import classes from './ProductGrid.module.css';
 import Product from './Product';
 import ProductModal from '../ProductModal/ProductModal';

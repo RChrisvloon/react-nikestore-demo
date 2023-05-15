@@ -22,3 +22,19 @@
 	gap: 8px;
   cursor: pointer;
 }
+
+/* Small screens */
+@media only screen and (max-width: 960px) {
+  .results-header {
+    padding: 0 14px 0 14px;
+    margin-bottom: 1rem;
+  }
+  
+  .results-header h1 {
+    font-size: 18px;
+  }
+  
+  #sort-button {
+    display: none;
+  }
+}

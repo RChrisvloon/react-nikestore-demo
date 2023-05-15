@@ -21,7 +21,7 @@ const ResultsHeader = (props) => {
 					<p>{props.showFilterMenu ? 'Hide' : 'Show'} Filters</p>
 					<img src={settings} alt="Copyright by https://tablericons.com/" />
 				</div>
-				<div>
+				<div id={classes['sort-button']}>
 					<p>Sort By</p>
 					<img src={downArrow} alt="Copyright by https://tablericons.com/" />
 				</div>
