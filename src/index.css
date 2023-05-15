@@ -187,3 +187,15 @@ html {
 .is-hidden{
   display: none;
 }
+
+/* Discount styling */
+.discount_line {
+  text-decoration: line-through;
+  color: grey;
+  margin-left: 0.5rem;
+}
+
+.discount_styling {
+  color: green;
+  padding-top: 1rem;
+}

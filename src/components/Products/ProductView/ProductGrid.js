@@ -4,23 +4,19 @@ import Product from './Product';
 import ProductModal from '../ProductModal/ProductModal';
 import DUMMY_PRODUCTS from '../../../store/DummyProducts';
 
-// DEFAULT STATE FOR currentProduct-useState
-const EMPTY_PRODUCTSTATE = {
-	key: null,
-	title: null,
-	description: null,
-	price: null,
-	image: null,
-	discount: null,
-};
-
 // View that shoes all products
 const ProductGrid = (props) => {
 	const [productModalIsShown, setProductModalIsShown] = useState(false);
-	const [currentProduct, setCurrentProduct] = useState(0);
+	const [currentProduct, setCurrentProduct] = useState(false);
 
 	// Open Modal-window & Pass clicked product to ProductModal
 	const openModal = (id) => {
+    // Check if clicked product exists
+    if (!id) {
+      window.alert('Product could not be found!');
+      return;
+    }
+
 		setCurrentProduct(id);
 		setProductModalIsShown(true);
 	};
@@ -47,10 +43,10 @@ const ProductGrid = (props) => {
 	});
 
 	return (
-		<Fragment>
+		<div className={[classes['productgrid-container'], props.showFilterMenu ? '' : classes['full-width']].join(' ')}>
 			{productModalIsShown && <ProductModal productId={currentProduct} onClose={closeModal} />}
 			<div className={classes['product-grid']}>{productsList}</div>
-		</Fragment>
+		</div>
 	);
 };
 

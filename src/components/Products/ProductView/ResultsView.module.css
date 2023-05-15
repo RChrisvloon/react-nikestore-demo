@@ -1,4 +1,4 @@
-.results-container {
+#resultsView-container {
 	display: flex;
-  width: 100%;
+  overflow: hidden;
 }

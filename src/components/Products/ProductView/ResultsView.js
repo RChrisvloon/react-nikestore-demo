@@ -4,9 +4,9 @@ import classes from './ResultsView.module.css';
 
 const ResultsView = (props) => {
 	return (
-		<div className={classes['results-container']}>
+		<div id={classes['resultsView-container']}>
 			<FilterMenu showFilterMenu={props.showFilterMenu}/>
-			<ProductGrid />
+			<ProductGrid showFilterMenu={props.showFilterMenu}/>
 		</div>
 	);
 };

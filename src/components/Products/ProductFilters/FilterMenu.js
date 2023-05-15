@@ -8,11 +8,12 @@ import FilterOption from './FilterOption';
 const FilterMenu = (props) => {
 	return (
 		<Fragment>
-			<div className={[classes.scroller, props.showFilterMenu ? '' : classes['is-hidden']].join(' ')}>
-				<div className={classes.scroller_pickup}>
+			<div className={[classes.filterMenu, props.showFilterMenu ? '' : classes['filterMenu_invisible']].join(' ')}>
+				<div className={classes.filterMenu_pickup}>
 					<p>Pick Up Today</p>
 					<Switch />
 				</div>
+        {/* IMPROVE // Categories & Filteroptions could be loaded from external file or API*/}
 				<div className={classes.filters}>
 					<div className={classes['category-filters']}>
 						<a href="/#">Lifestyle</a>

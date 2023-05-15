@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import classes from './FilterOptionSection.module.css';
-
-// Import svg file(s)
 import downArrow from '../../../assets/down-arrow.svg';
 
 // Parent-element for all FilterOption-components
@@ -16,9 +14,9 @@ const FilterOptionSection = (props) => {
 		<div className={classes['filter-section']}>
 			<div className={classes['filter-section-title_wrapper']}>
 				<h3 className={classes['filter-section-title']}>{props.title}</h3>
-				<img src={downArrow} alt="Toggle Icon" onClick={toggleShowCategory}/>
+				<img src={downArrow} alt="Copyright by https://tablericons.com/" onClick={toggleShowCategory}/>
 			</div>
-      <div className={[classes['filter-section-options'], !showCategory ? classes['is-hidden'] : ''].join(' ')}>{props.children}</div>
+      <div className={[classes['filter-section-options'], !showCategory ? classes['filterOption_hidden'] : ''].join(' ')}>{props.children}</div>
 		</div>
 	);
 };

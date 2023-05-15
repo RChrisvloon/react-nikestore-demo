@@ -15,8 +15,8 @@ const Header = (props) => {
 			<TopHeader />
 			<header className={classes.header}>
 				<div className={classes['header-wrapper']}>
-					<a href="https://www.nike.com/">
-						<img className={classes['app-logo']} src={nike} alt="Nike logo" />
+					<a href="https://www.chrisvanloon.nl/">
+						<img className={classes['app-logo']} src={nike} alt="Copyright by https://www.nike.com/"/>
 					</a>
 					<CategoryMenu />
 					<CheckoutGroup />

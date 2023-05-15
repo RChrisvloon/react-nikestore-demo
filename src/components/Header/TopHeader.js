@@ -11,13 +11,13 @@ const TopHeader = (props) => {
 			<div className={classes.topHeader_wrapper}>
 				<ul className={classes.brandMenu}>
 					<li className={classes.brandMenu_item}>
-						<a href={'/'}>
-							<img src={jordan} alt="Icon of Jordan" />
+						<a href={'https://www.nike.com/jordan'}>
+							<img src={jordan} alt="Copyright by https://www.nike.com/" />
 						</a>
 					</li>
 					<li className={classes.brandMenu_item}>
-						<a href={'/'}>
-							<img src={converse} alt="Icon of Converse" />
+						<a href={'https://www.converse.com/'}>
+							<img src={converse} alt="Copyright by https://www.converse.com/" />
 						</a>
 					</li>
 				</ul>

@@ -1,11 +1,17 @@
-.scroller {
-	min-width: 260px;
-	position: sticky;
+.filterMenu {
 	overflow: hidden scroll;
+  width: 260px;
 	padding: 0 1em 1em 48px;
+  transition: 0.4s;
 }
 
-.scroller_pickup {
+.filterMenu_invisible {
+  transform: translateX(-100%);
+  padding: 0;
+  transition: 0.4s;
+}
+
+.filterMenu_pickup {
 	display: flex;
 	gap: 1rem;
 	padding-bottom: 20px;
@@ -36,8 +42,4 @@
 .category-filters a:hover {
   opacity: 0.5;
   transition: 0.2s;
-}
-
-.is-hidden {
-  display: none;
 }

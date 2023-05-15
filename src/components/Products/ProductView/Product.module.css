@@ -1,9 +1,14 @@
 .product-card {
-	min-width: 185px;
+	/* min-width: 185px; */
 	max-width: 33.33333333%;
 	padding: 0 8px 0 8px;
 }
 
+.product-card:hover{
+  cursor: pointer;
+}
+
+/* Image styling */
 .product-card_img {
   max-width: 600px;
   width: 100%;
@@ -14,15 +19,12 @@
   transition: opacity 0.5s;
 }
 
-.product-card:hover{
-  cursor: pointer;
-}
-
 .product-card:hover > img{
   opacity: 0.5;
   transition: 0.5s;
 }
 
+/* Product info section */
 .product-card_info {
   min-height: 220px;
 }
@@ -40,12 +42,20 @@
   padding-top: 10px
 }
 
-.priceinfo_discount {
-  color: green;
-  padding-top: 1rem;
+/* Small screens */
+@media only screen and (max-width: 880px) {
+  .product-card {
+    min-width: 50%;
+  }
 }
 
-.discounted {
-  text-decoration: line-through;
-  color: grey;
+/* Smallest screens */
+@media only screen and (max-width: 780px) {
+  .product-card {
+    min-width: 100%;
+  }
+
+  .product-card_img{
+   max-width: 100%;
+  }
 }

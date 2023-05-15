@@ -1,6 +1,16 @@
+.productgrid-container{
+  flex: 1;
+  transition: flex 0.3s;
+}
+
 .product-grid {
 	padding: 0 40px 0 48px;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.full-width{
+  flex: 1 0 100%;
 }

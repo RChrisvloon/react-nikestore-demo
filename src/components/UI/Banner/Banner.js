@@ -66,7 +66,7 @@ const Banner = () => {
 				<img
 					className={classes['banner-inner_arrow']}
 					src={leftArrow}
-					alt="Left arrow"
+					alt="Copyright by https://tablericons.com/"
 					onClick={prevSlideHandler}
 				/>
 				<div
@@ -79,7 +79,7 @@ const Banner = () => {
 				<img
 					className={classes['banner-inner_arrow']}
 					src={rightArrow}
-					alt="Right arrow"
+					alt="Copyright by https://tablericons.com/"
 					onClick={nextSlideHandler}
 				/>
 			</div>

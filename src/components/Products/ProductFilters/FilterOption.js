@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './FilterOption.module.css';
 
-// Child-elements of FilterOptionSection
 const FilterOption = (props) => {
 	return (
 		<div className={classes['filter-section_item']}>

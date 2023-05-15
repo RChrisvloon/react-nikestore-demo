@@ -19,11 +19,11 @@ const ResultsHeader = (props) => {
 			<div className={classes['results-header-buttons']}>
 				<div onClick={toggleFilterHandler}>
 					<p>{props.showFilterMenu ? 'Hide' : 'Show'} Filters</p>
-					<img src={settings} alt="Settings icon" />
+					<img src={settings} alt="Copyright by https://tablericons.com/" />
 				</div>
 				<div>
 					<p>Sort By</p>
-					<img src={downArrow} alt="Down arrow" />
+					<img src={downArrow} alt="Copyright by https://tablericons.com/" />
 				</div>
 			</div>
 		</div>
