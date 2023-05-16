@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Switch.module.css';
 
-const Switch = (props) => {
+const Switch = () => {
   return (
     <label className={classes['switch']}>
       <input type="checkbox"/>

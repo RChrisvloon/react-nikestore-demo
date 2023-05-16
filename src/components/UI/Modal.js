@@ -20,7 +20,7 @@ const ModalOverlay = (props) => {
 	);
 };
 
-// Select element to insert Modal & backdrop into html-tree
+// Select element to insert Modal & backdrop into
 const portalElement = document.getElementById('overlays');
 
 const Modal = (props) => {

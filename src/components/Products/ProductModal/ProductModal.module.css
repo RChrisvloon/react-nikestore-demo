@@ -18,6 +18,8 @@
 	cursor: pointer;
   background-color: #e5e5e5;
   border-radius: 50%;
+  min-height: 36px;
+  min-width: 36px;
 }
 
 /* Title and description */
@@ -87,7 +89,7 @@
 
 .thumbnail-column{
   display: flex;
-  width: 60px;
+  min-width: 60px;
   flex-direction: column;
   gap: 0.5rem;
   /* max-height: 450px; */

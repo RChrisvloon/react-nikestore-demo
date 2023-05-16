@@ -2,24 +2,37 @@ import { useReducer } from 'react';
 import CartContext from './cart-context';
 
 const defaultCartState = {
-	items: [],
+	items: [], // (id, newPrice, selectedSize, amount)
 	totalAmount: 0,
 };
 
 const cartReducer = (state, action) => {
 	if (action.type === 'ADD') {
-    console.log('id: ', action.id, 'size: ', action.size);
-    // Update TotalAmount
+    // Update TotalAmount (TO-DO -- ADD OPTION TO ADD MULTIPLE AT ONCE 'action.item.newPrice * actio.item.amount')
+    const updatedTotalAmount = state.totalAmount + action.item.newPrice;
 
-    // Find item in cart
+    // Check if item with same id & size exists in the cart
+    const existingItemIndex = state.items.findIndex((item) => item.id === action.item.id && item.selectedSize === action.item.selectedSize);
+    const existingItem = state.items[existingItemIndex];
 
-    // If item exists in cart, update amount for that item
+    let updatedItems;
 
-    // Else concat product onto the state.items
+    // Item is already in the cart
+    if (existingItem) {
+      const updatedItem = {
+        ...existingItem,
+        amount: existingItem.amount + 1 // TO-DO -- Could be '+ action.item.amount' if option for multiple-addition is added
+      }
+      updatedItems = [...state.items];
+      updatedItems[existingItemIndex] = updatedItem;
+    } else {
+      updatedItems = state.items.concat(action.item);
+    }
 
-    ///// Return object with items and totalAmount
-
-    return null;
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmount
+    };
 	}
 
 	if (action.type === 'REMOVE') {
@@ -32,8 +45,33 @@ const cartReducer = (state, action) => {
     // if amount of that item is 1, filter it out
 
     // else create const updatedItem and lower amount by 1
+    
 
-    ///// RETURN items and totalamount
+    // Check if item with same id & size exists in the cart
+    const existingItemIndex = state.items.findIndex((item) => item.id === action.item.id && item.selectedSize === action.item.selectedSize);
+    const existingItem = state.items[existingItemIndex];
+
+    // Update TotalAmount
+    const updatedTotalAmount = state.totalAmount + existingItem.newPrice;
+
+    let updatedItems;
+
+    // Item is already in the cart
+    if (existingItem) {
+      const updatedItem = {
+        ...existingItem,
+        amount: existingItem.amount + 1 // TO-DO -- Could be '+ action.item.amount' if option for multiple-addition is added
+      }
+      updatedItems = [...state.items];
+      updatedItems[existingItemIndex] = updatedItem;
+    } else {
+      updatedItems = state.items.concat(action.item);
+    }
+
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmount
+    };
 	}
   
   if (action.type === 'CLEAR') {
@@ -44,8 +82,8 @@ const cartReducer = (state, action) => {
 const CartProvider = (props) => {
 	const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
 
-	const addItemToCartHandler = (item, size) => {
-		dispatchCartAction({ type: 'ADD', item: item, size: size });
+	const addItemToCartHandler = (item) => {
+		dispatchCartAction({ type: 'ADD', item: item });
 	};
 
 	const removeItemToCartHandler = (id) => {

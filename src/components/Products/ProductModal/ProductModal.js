@@ -17,13 +17,19 @@ const ProductModal = (props) => {
 
 	// Find product based on id passed in ProductGrid-component
 	const [product] = DUMMY_PRODUCTS.filter((item) => item.id === props.productId);
+  
+	const { id, title, description, price, img_url: image, sub_images, discount } = product;
 
-	// Destructure passed product
-	const { title, description, price, img_url: image, sub_images, discount } = product;
-
-	// Get all thumbnail-images & return an img-element
+	// Get all thumbnail-images & return an ImageComponent
 	const subImagesContent = sub_images.map((img, key) => {
-    return <ImageComponent key={key} className={'thumbnail_img'} src={img} alt={"Thumbnail owned by https://www.nike.com/"}/>
+		return (
+			<ImageComponent
+				key={key}
+				className={'thumbnail_img'}
+				src={img}
+				alt={'Thumbnail owned by https://www.nike.com/'}
+			/>
+		);
 	});
 
 	// Call custom-hook for calculating discounted price
@@ -34,13 +40,15 @@ const ProductModal = (props) => {
 		setSelectedSize(size);
 	};
 
-	// TO-DO -- CALL CARTCONTEXT TO ADD TO BAG
 	const cartItemAddHandler = () => {
-    if (!selectedSize) {
-      console.log('Please select a valid shoesize.');
-      return;
-    }
-		cartCtx.addItem({ product, selectedSize });
+		if (!selectedSize) {
+			window.alert('Please select a valid shoesize.');
+			return;
+		}
+
+		cartCtx.addItem({ id, price, newPrice, selectedSize, amount: 1 });
+
+		props.onClose();
 	};
 
 	return (
@@ -69,10 +77,12 @@ const ProductModal = (props) => {
 				<SizePicker onSizeSelect={handleSizeSelect} />
 				{/* Product images */}
 				<div className={classes['modal-images_wrapper']}>
-					<div className={classes['thumbnail-column']}>
-            {subImagesContent}
-          </div>
-          <ImageComponent src={image} className={'modal-product_image'} alt={"Copyright by https://www.nike.com/"}/>
+					<div className={classes['thumbnail-column']}>{subImagesContent}</div>
+					<ImageComponent
+						src={image}
+						className={'modal-product_image'}
+						alt={'Copyright by https://www.nike.com/'}
+					/>
 				</div>
 				{/* Checkout section */}
 				<div className={classes['order-buttons']}>
