@@ -9,7 +9,14 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
 	if (action.type === 'ADD') {
     // Update TotalAmount (TO-DO -- ADD OPTION TO ADD MULTIPLE AT ONCE 'action.item.newPrice * actio.item.amount')
-    const updatedTotalAmount = state.totalAmount + action.item.newPrice;
+    let updatedTotalAmount;
+
+    // Check for discounted price
+    if (action.item.newPrice) {
+      updatedTotalAmount = state.totalAmount + action.item.newPrice;
+    } else {
+      updatedTotalAmount = state.totalAmount + action.item.price;
+    }
 
     // Check if item with same id & size exists in the cart
     const existingItemIndex = state.items.findIndex((item) => item.id === action.item.id && item.selectedSize === action.item.selectedSize);
@@ -51,21 +58,27 @@ const cartReducer = (state, action) => {
     const existingItemIndex = state.items.findIndex((item) => item.id === action.item.id && item.selectedSize === action.item.selectedSize);
     const existingItem = state.items[existingItemIndex];
 
-    // Update TotalAmount
-    const updatedTotalAmount = state.totalAmount + existingItem.newPrice;
+    let updatedTotalAmount;
+
+    // Check for discounted price
+    if (action.item.newPrice) {
+      updatedTotalAmount = state.totalAmount - action.item.newPrice;
+    } else {
+      updatedTotalAmount = state.totalAmount - action.item.price;
+    }
 
     let updatedItems;
 
-    // Item is already in the cart
-    if (existingItem) {
+    // Item is only in cart 1 time
+    if (existingItem.amount === 1) {
+      updatedItems = state.items.filter((item) => item.id !== action.id);
+    } else {
       const updatedItem = {
         ...existingItem,
-        amount: existingItem.amount + 1 // TO-DO -- Could be '+ action.item.amount' if option for multiple-addition is added
+        amount: existingItem.amount - 1
       }
       updatedItems = [...state.items];
       updatedItems[existingItemIndex] = updatedItem;
-    } else {
-      updatedItems = state.items.concat(action.item);
     }
 
     return {

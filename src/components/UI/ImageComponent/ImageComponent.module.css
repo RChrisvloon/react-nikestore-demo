@@ -22,3 +22,10 @@
   overflow: hidden;
 }
 /*****/
+
+/* Cart Image styling */
+.cart-item_image{
+  width: 150px;
+  margin-right: 1rem;
+  height: 150px;
+}

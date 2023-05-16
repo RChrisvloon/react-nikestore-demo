@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Modal from '../../UI/Modal';
 import classes from './ProductModal.module.css';
-import DUMMY_PRODUCTS from '../../../store/DummyProducts';
+import useGetProduct from '../../../hooks/use-getProduct';
 import useDiscountCalc from '../../../hooks/use-discountCalc';
 import CartContext from '../../../store/cart-context';
 import SizePicker from './SizePicker';
@@ -14,14 +14,10 @@ import heart from '../../../assets/heart.svg';
 const ProductModal = (props) => {
 	const [selectedSize, setSelectedSize] = useState(false);
 	const cartCtx = useContext(CartContext);
-
-	// Find product based on id passed in ProductGrid-component
-	const [product] = DUMMY_PRODUCTS.filter((item) => item.id === props.productId);
-  
-	const { id, title, description, price, img_url: image, sub_images, discount } = product;
+  const product = useGetProduct(props.productId);
 
 	// Get all thumbnail-images & return an ImageComponent
-	const subImagesContent = sub_images.map((img, key) => {
+	const subImagesContent = product.sub_images.map((img, key) => {
 		return (
 			<ImageComponent
 				key={key}
@@ -33,7 +29,7 @@ const ProductModal = (props) => {
 	});
 
 	// Call custom-hook for calculating discounted price
-	const newPrice = useDiscountCalc(price, discount);
+	const newPrice = useDiscountCalc(product.price, product.discount);
 
 	// Handle shoe size from SizePicker-component
 	const handleSizeSelect = (size) => {
@@ -46,7 +42,7 @@ const ProductModal = (props) => {
 			return;
 		}
 
-		cartCtx.addItem({ id, price, newPrice, selectedSize, amount: 1 });
+		cartCtx.addItem({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 });
 
 		props.onClose();
 	};
@@ -56,11 +52,11 @@ const ProductModal = (props) => {
 			<div className={classes['modal-inside_wrapper']}>
 				<div className={classes['modal-header']}>
 					<div className={classes['modal-product_info']}>
-						<h1 className={classes['modal-product_title']}>{title}</h1>
-						<p className={classes['modal-product-description']}>{description}</p>
+						<h1 className={classes['modal-product_title']}>{product.title}</h1>
+						<p className={classes['modal-product-description']}>{product.description}</p>
 					</div>
 					<img
-						className={classes['modal-header_closeBtn']}
+						className={'modal-header_closeBtn'}
 						onClick={props.onClose}
 						src={cross}
 						alt="Copyright by https://tablericons.com/"
@@ -70,16 +66,16 @@ const ProductModal = (props) => {
 					<h4>Order this product for only:</h4>
 					<p>
 						{newPrice && `$${newPrice}`}
-						<span className={`${newPrice && 'discount_line'}`}>${price}</span>
+						<span className={`${newPrice && 'discount_line'}`}>${product.price}</span>
 					</p>
-					{newPrice && <p className={'discount_styling'}>{discount}% off</p>}
+					{newPrice && <p className={'discount_styling'}>{product.discount}% off</p>}
 				</div>
 				<SizePicker onSizeSelect={handleSizeSelect} />
 				{/* Product images */}
 				<div className={classes['modal-images_wrapper']}>
 					<div className={classes['thumbnail-column']}>{subImagesContent}</div>
 					<ImageComponent
-						src={image}
+						src={product.img_url}
 						className={'modal-product_image'}
 						alt={'Copyright by https://www.nike.com/'}
 					/>

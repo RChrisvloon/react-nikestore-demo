@@ -1,0 +1,13 @@
+.item {
+  height: 200px;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.item-wrapper_inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
