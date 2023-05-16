@@ -1,8 +1,12 @@
-const Cart = () => {
+import Modal from "../UI/Modal";
+
+const Cart = (props) => {
   return (
-    <div>
-      <p>Cart</p>
-    </div>
+    <Modal onClose={props.hideCart}>
+      <div>
+        Cart content
+      </div>
+    </Modal>
   );
 }
 

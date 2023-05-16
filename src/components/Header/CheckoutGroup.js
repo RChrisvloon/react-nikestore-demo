@@ -9,12 +9,12 @@ import menu from '../../assets/hamburger.svg';
 const CheckoutGroup = (props) => {
 	return (
 		<div className={classes.checkoutGroup}>
-			<a href="/">
+			<button>
 				<img src={heart} alt="Heart icon from https://tablericons.com/" />
-			</a>
-			<a href="/">
+			</button>
+			<button onClick={props.showCart}>
 				<img src={basket} alt="Basket icon from https://tablericons.com/" />
-			</a>
+			</button>
       <button id={classes['menu-button']}>
 				<img src={menu} alt="Basket icon from https://tablericons.com/" />
 			</button>

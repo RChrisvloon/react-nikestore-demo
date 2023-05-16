@@ -7,9 +7,16 @@ const Product = (props) => {
   const newPrice = useDiscountCalc(props.price, props.discount);
 
   const openModal = () => {
+    // Check if clicked productId exists
+    if (!props.id) {
+      window.alert('Product id could not be found!');
+      return;
+    }
+
     props.openModal(props.id);
   }
 
+  // IMPROVE -- Add loading state for images
 	return (
 		<div className={classes['product-card']} onClick={openModal}>
 			<img

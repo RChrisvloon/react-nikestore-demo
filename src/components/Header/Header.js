@@ -15,11 +15,12 @@ const Header = (props) => {
 			<TopHeader />
 			<header className={classes.header}>
 				<div className={classes['header-wrapper']}>
-					<a href="https://www.chrisvanloon.nl/">
+					<a className={classes['app-logo_wrapper']} href="https://www.chrisvanloon.nl/">
 						<img className={classes['app-logo']} src={nike} alt="Copyright by https://www.nike.com/"/>
 					</a>
 					<CategoryMenu />
-					<CheckoutGroup />
+          {/*Passing props down multiple levels is 'bad', React redux will fix this later*/}
+					<CheckoutGroup showCart={props.showCart}/>
 				</div>
 			</header>
       <Banner />

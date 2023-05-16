@@ -3,6 +3,7 @@
 	margin-bottom: 15px;
 }
 
+/* Nike headerlogo styling */
 .app-logo {
 	height: 59px;
 	width: 59px;
@@ -11,8 +12,13 @@
 	filter: grayscale(100%);
 }
 
-.app_logo:hover {
+.app-logo_wrapper {
+  transition: 0.4s;
+}
+
+.app-logo_wrapper:hover {
 	opacity: 50%;
+  transition: 0.4s;
 }
 
 .header {

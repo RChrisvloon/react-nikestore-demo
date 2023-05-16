@@ -1,0 +1,46 @@
+.wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.sizes-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.sizes-info_text {
+	font-weight: 1000;
+	padding-bottom: 5px;
+}
+
+.sizes-info_subtext {
+	color: #707072;
+	cursor: pointer;
+	font-weight: 1000;
+}
+
+/* Shoe sizes styling */
+.sizes {
+	display: flex;
+	width: 100%;
+	gap: 5px;
+	max-height: 70px;
+	overflow-x: scroll;
+}
+
+.sizes_item {
+	min-width: 90px;
+	text-align: center;
+	padding: 0.5rem;
+	border-radius: 5px;
+	border: 1px solid lightgrey;
+}
+
+.sizes_item:hover {
+	border-color: black;
+	cursor: pointer;
+}
+
+.active {
+	border-color: black;
+}

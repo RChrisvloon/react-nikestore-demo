@@ -11,12 +11,6 @@ const ProductGrid = (props) => {
 
 	// Open Modal-window & Pass clicked product to ProductModal
 	const openModal = (id) => {
-    // Check if clicked product exists
-    if (!id) {
-      window.alert('Product could not be found!');
-      return;
-    }
-
 		setCurrentProduct(id);
 		setProductModalIsShown(true);
 	};

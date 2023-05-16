@@ -1,7 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import classes from './TopHeader.module.css';
-
-// Import svg file(s)
 import jordan from '../../assets/jordan.svg';
 import converse from '../../assets/converse.svg';
 

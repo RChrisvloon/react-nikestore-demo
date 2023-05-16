@@ -4,12 +4,12 @@
 	justify-content: space-between;
 }
 
-.checkoutGroup > * {
+.checkoutGroup button{
   padding: 6px;
 	margin-right: 12px;
 }
 
-.checkoutGroup > * > img {
+.checkoutGroup button img {
   height: 24px;
   width: 24px;
 }
