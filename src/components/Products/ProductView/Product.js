@@ -1,28 +1,29 @@
 import React from 'react';
 import classes from './Product.module.css';
 import useDiscountCalc from '../../../hooks/use-discountCalc';
+import ImageComponent from '../../UI/ImageComponent/ImageComponent';
 
 const Product = (props) => {
-  // Call custom-hook for calculating discounted price
-  const newPrice = useDiscountCalc(props.price, props.discount);
+	// Call custom-hook for calculating discounted price
+	const newPrice = useDiscountCalc(props.price, props.discount);
 
-  const openModal = () => {
-    // Check if clicked productId exists
-    if (!props.id) {
-      window.alert('Product id could not be found!');
-      return;
-    }
+	const openModal = () => {
+		// Check if clicked productId exists
+		if (!props.id) {
+			window.alert('Product id could not be found!');
+			return;
+		}
 
-    props.openModal(props.id);
-  }
+    // Open the modal window
+		props.openModal(props.id);
+	};
 
-  // IMPROVE -- Add loading state for images
 	return (
 		<div className={classes['product-card']} onClick={openModal}>
-			<img
-				className={classes['product-card_img']}
+			<ImageComponent
+				className={'product-card_img'}
 				src={props.image}
-				alt="Copyright by https://www.nike.com/"
+				alt={'Copyright by https://www.nike.com/'}
 			/>
 			<div className={classes['product-card_info']}>
 				<h3 className={classes['product-card_title']}>{props.title}</h3>

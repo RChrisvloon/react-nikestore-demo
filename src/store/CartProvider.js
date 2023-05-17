@@ -6,117 +6,113 @@ const defaultCartState = {
 	totalAmount: 0,
 };
 
+// Reducer function to manage cart state
 const cartReducer = (state, action) => {
+  // ADD - Item to cart
 	if (action.type === 'ADD') {
-    // Update TotalAmount (TO-DO -- ADD OPTION TO ADD MULTIPLE AT ONCE 'action.item.newPrice * actio.item.amount')
-    let updatedTotalAmount;
+		let updatedTotalAmount;
 
-    // Check for discounted price
-    if (action.item.newPrice) {
-      updatedTotalAmount = state.totalAmount + action.item.newPrice;
-    } else {
-      updatedTotalAmount = state.totalAmount + action.item.price;
-    }
+		// Check for discounted price
+		if (action.item.newPrice) {
+			updatedTotalAmount = state.totalAmount + action.item.newPrice;
+		} else {
+			updatedTotalAmount = state.totalAmount + action.item.price;
+		}
 
-    // Check if item with same id & size exists in the cart
-    const existingItemIndex = state.items.findIndex((item) => item.id === action.item.id && item.selectedSize === action.item.selectedSize);
-    const existingItem = state.items[existingItemIndex];
+		// Check if item with same id & size exists in the cart
+		const existingItemIndex = state.items.findIndex(
+			(item) => item.id === action.item.id && item.selectedSize === action.item.selectedSize
+		);
+		const existingItem = state.items[existingItemIndex];
 
-    let updatedItems;
+		let updatedItems;
 
-    // Item is already in the cart
-    if (existingItem) {
-      const updatedItem = {
-        ...existingItem,
-        amount: existingItem.amount + 1 // TO-DO -- Could be '+ action.item.amount' if option for multiple-addition is added
-      }
-      updatedItems = [...state.items];
-      updatedItems[existingItemIndex] = updatedItem;
-    } else {
-      updatedItems = state.items.concat(action.item);
-    }
+		if (existingItem) {
+			// Item is already in the cart, update the amount
+			const updatedItem = {
+				...existingItem,
+				amount: existingItem.amount + 1,
+			};
+			updatedItems = [...state.items];
+			updatedItems[existingItemIndex] = updatedItem;
+		} else {
+			// Item is not in the cart, add it to the items array
+			updatedItems = state.items.concat(action.item);
+		}
 
-    return {
-      items: updatedItems,
-      totalAmount: updatedTotalAmount
-    };
+		return {
+			items: updatedItems,
+			totalAmount: updatedTotalAmount,
+		};
 	}
 
+  // REMOVE - Item from cart
 	if (action.type === 'REMOVE') {
-    // Find item in cart
+		// Check if item with same id & size exists in the cart
+		const existingItemIndex = state.items.findIndex(
+			(item) => item.id === action.item.id && item.selectedSize === action.item.size
+		);
+		const existingItem = state.items[existingItemIndex];
 
-    // Update totalamount by doing: totalamount - item.price (or similar)
+		let updatedTotalAmount;
 
-    // create new let updatedItems
+		// Check for discounted price
+		if (existingItem.newPrice) {
+			updatedTotalAmount = state.totalAmount - existingItem.newPrice * existingItem.amount;
+		} else {
+			updatedTotalAmount = state.totalAmount - existingItem.price * existingItem.amount;
+		}
 
-    // if amount of that item is 1, filter it out
+		let updatedItems;
 
-    // else create const updatedItem and lower amount by 1
-    
+		// Filter out item to be removed
+		updatedItems = state.items.filter((item) => item !== existingItem);
 
-    // Check if item with same id & size exists in the cart
-    const existingItemIndex = state.items.findIndex((item) => item.id === action.item.id && item.selectedSize === action.item.selectedSize);
-    const existingItem = state.items[existingItemIndex];
-
-    let updatedTotalAmount;
-
-    // Check for discounted price
-    if (action.item.newPrice) {
-      updatedTotalAmount = state.totalAmount - action.item.newPrice;
-    } else {
-      updatedTotalAmount = state.totalAmount - action.item.price;
-    }
-
-    let updatedItems;
-
-    // Item is only in cart 1 time
-    if (existingItem.amount === 1) {
-      updatedItems = state.items.filter((item) => item.id !== action.id);
-    } else {
-      const updatedItem = {
-        ...existingItem,
-        amount: existingItem.amount - 1
-      }
-      updatedItems = [...state.items];
-      updatedItems[existingItemIndex] = updatedItem;
-    }
-
-    return {
-      items: updatedItems,
-      totalAmount: updatedTotalAmount
-    };
+		return {
+			items: updatedItems,
+			totalAmount: updatedTotalAmount,
+		};
 	}
-  
-  if (action.type === 'CLEAR') {
-    return defaultCartState;
-  }
+
+  // CHANGE - Amount of product in cart
+	if (action.type === 'CHANGE') {
+		// TO BE IMPLEMENTED
+		return defaultCartState;
+	}
+
+  // CLEAR - Remove an item completely from the cart
+	if (action.type === 'CLEAR') {
+		// Clear the cart
+		return defaultCartState;
+	}
 };
 
+// CartProvider component to manage cart state using context
 const CartProvider = (props) => {
 	const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
 
+	// Handler functions to modify the cart state
 	const addItemToCartHandler = (item) => {
 		dispatchCartAction({ type: 'ADD', item: item });
 	};
 
-	const removeItemToCartHandler = (id) => {
-		dispatchCartAction({ type: 'REMOVE', id: id });
+	const removeItemToCartHandler = (item) => {
+		dispatchCartAction({ type: 'REMOVE', item: item });
 	};
 
-  const clearCartHandler = () => {
-    dispatchCartAction({type: 'CLEAR'});
-  }
+	const clearCartHandler = () => {
+		dispatchCartAction({ type: 'CLEAR' });
+	};
 
-  // Fill in the cartContext with values from CartProvider.js
-  const cartContext = {
-    items: cartState.items,
-    totalAmount: cartState.totalAmount,
-    addItem: addItemToCartHandler,
-    removeItem: removeItemToCartHandler,
-    clearCart: clearCartHandler
-  }
+	const cartContext = {
+		items: cartState.items,
+		totalAmount: cartState.totalAmount,
+		addItem: addItemToCartHandler,
+		removeItem: removeItemToCartHandler,
+		clearCart: clearCartHandler,
+	};
 
-	return <CartContext.Provider value={cartContext}>{props.children}</CartContext.Provider>
-}
+	return <CartContext.Provider value={cartContext}>{props.children}</CartContext.Provider>;
+};
 
 export default CartProvider;

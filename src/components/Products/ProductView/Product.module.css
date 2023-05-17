@@ -8,22 +8,6 @@
   cursor: pointer;
 }
 
-/* Image styling */
-.product-card_img {
-  max-width: 600px;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  object-position: center;
-  margin-bottom: 1rem;
-  transition: opacity 0.5s;
-}
-
-.product-card:hover > img{
-  opacity: 0.5;
-  transition: 0.5s;
-}
-
 /* Product info section */
 .product-card_info {
   min-height: 220px;

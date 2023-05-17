@@ -9,8 +9,8 @@
 .cart-header-main_wrapper {
   display: flex;
   flex-direction: column;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid black;
+  padding-bottom: 0.5rem;
+	border-bottom: 1px solid rgb(229, 229, 229);
   margin-bottom: 1rem;
 }
 
@@ -34,11 +34,16 @@
   overflow-y: scroll;
 }
 
+.cart-items_wrapper ul li:last-child{
+  border-bottom: none;
+}
+
 /* Amount section */
 .amount_wrapper {
   display: flex;
   margin-top: auto;
   justify-content: space-between;
+  padding-right: 1rem;
 }
 
 .amount_wrapper span {

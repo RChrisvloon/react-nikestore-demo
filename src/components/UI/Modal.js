@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
 
-// Dark background effect if modal is opened
+// Backdrop component that represents the background overlay of the modal
 const Backdrop = (props) => {
 	return (
 		<div
@@ -12,6 +12,7 @@ const Backdrop = (props) => {
 	);
 };
 
+// ModalOverlay component that represents the content container of the modal
 const ModalOverlay = (props) => {
 	return (
 		<div className={classes.modal}>
@@ -20,12 +21,12 @@ const ModalOverlay = (props) => {
 	);
 };
 
-// Select element to insert Modal & backdrop into
+// Find the element in the DOM to render the modal
 const portalElement = document.getElementById('overlays');
 
+// Modal component that renders the backdrop and modal overlay using React portals
 const Modal = (props) => {
 	return (
-    // Insert Backdrop & Modal in html-tree (see index.html)
 		<Fragment>
 			{ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
 			{ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}

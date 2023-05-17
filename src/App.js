@@ -9,8 +9,11 @@ import Cart from './components/Cart/Cart';
 function App() {
   // IMPROVE -- ResultsHeader & ResultsView should be handled in it's own page-component.
   //         -- React Router and React Redux will fix this problem and slim down App.js
+
+  // Filter menu visibility state
 	const [filterMenuisShown, setFilterMenuIsShown] = useState(true);
 
+  // Toggle filter menu
 	const toggleFilterMenu = () => {
 		setFilterMenuIsShown((prevState) => !prevState);
 	};
@@ -18,10 +21,12 @@ function App() {
   // Cart visibility state
   const [cartIsShown, setCartIsShown] = useState(false);
 
+  // Show cart handler
 	const showCartHandler = () => {
 		setCartIsShown(true);
 	};
 
+  // Hide cart handler
 	const hideCartHandler = () => {
 		setCartIsShown(false);
 	};
@@ -29,6 +34,7 @@ function App() {
 
 	return (
 		<CartProvider>
+      {/* Render the cart component if cartIsShown is true */}
       {cartIsShown && <Cart hideCart={hideCartHandler}/>}
 			<Header showCart={showCartHandler}/>
 			<main>

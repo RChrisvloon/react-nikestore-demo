@@ -4,7 +4,7 @@ const DUMMY_PRODUCTS = [
     id: 1,
 		title: 'Nike Pegasus 40',
 		description: "Men's Road Running Shoes",
-		price: 130,
+		price: 129.99,
 		img_url:
 			'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/1c887b49-b5fe-4c6a-97b1-9a30f7cd8e29/pegasus-40-mens-road-running-shoes-h3bxQl.png',
 		sub_images: [
@@ -22,7 +22,7 @@ const DUMMY_PRODUCTS = [
     id: 2,
 		title: 'Nike Invincible 3',
 		description: "Men's Road Running Shoes",
-		price: 180,
+		price: 179.99,
 		img_url:
 			'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/268e5f54-aee3-4c21-a7df-fa8c2067694a/invincible-3-mens-road-running-shoes-Xrd0px.png',
 		sub_images: [
@@ -39,7 +39,7 @@ const DUMMY_PRODUCTS = [
     id: 3,
 		title: 'Nike Air Max Pulse',
 		description: "Men's Shoes",
-		price: 150,
+		price: 149.99,
 		img_url:
 			'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2e282edb-e916-48cb-8329-97497507ab19/air-max-pulse-mens-shoes-ShS3tL.png',
 		sub_images: [
@@ -56,7 +56,7 @@ const DUMMY_PRODUCTS = [
     id: 4,
 		title: 'Nike Air Zoom Flight 95',
 		description: "Men's Shoes",
-		price: 160,
+		price: 159.99,
 		img_url:
 			'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e4e6d2f0-eb1b-4689-8a55-a7e5bb52fe3b/air-zoom-flight-95-mens-shoes-zc42bP.png',
 		sub_images: [
@@ -74,7 +74,7 @@ const DUMMY_PRODUCTS = [
     id: 5,
 		title: "Nike Air Force 1 '07",
 		description: "Men's Shoes",
-		price: 110,
+		price: 109.99,
 		img_url:
 			'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e6da41fa-1be4-4ce5-b89c-22be4f1f02d4/air-force-1-07-mens-shoes-5QFp5Z.png',
 		sub_images: [

@@ -12,11 +12,18 @@ import cross from '../../../assets/cross.svg';
 import heart from '../../../assets/heart.svg';
 
 const ProductModal = (props) => {
+	// State variables
 	const [selectedSize, setSelectedSize] = useState(false);
-	const cartCtx = useContext(CartContext);
-  const product = useGetProduct(props.productId);
+	const [isAddingToBag, setIsAddingToBag] = useState(false);
+	const [addToCartSuccess, setAddToCartSuccess] = useState(false);
 
-	// Get all thumbnail-images & return an ImageComponent
+	// Context
+	const cartCtx = useContext(CartContext);
+
+	// Fetch product data
+	const product = useGetProduct(props.productId);
+
+	// Generate sub-images content
 	const subImagesContent = product.sub_images.map((img, key) => {
 		return (
 			<ImageComponent
@@ -28,23 +35,41 @@ const ProductModal = (props) => {
 		);
 	});
 
-	// Call custom-hook for calculating discounted price
+	// Calculate discounted price
 	const newPrice = useDiscountCalc(product.price, product.discount);
 
-	// Handle shoe size from SizePicker-component
+	// Handler for shoe size selection
 	const handleSizeSelect = (size) => {
 		setSelectedSize(size);
 	};
 
+	// Handler for adding item to cart
 	const cartItemAddHandler = () => {
+		// Check if size is selected
 		if (!selectedSize) {
 			window.alert('Please select a valid shoesize.');
 			return;
 		}
 
-		cartCtx.addItem({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 });
+		// IMPROVE -- Add try catch to handle failed added items
+    // IMPROVE -- When api-based, request status can be used to display userfeedback
+		setIsAddingToBag(true);
+		setAddToCartSuccess(false);
 
-		props.onClose();
+		// Add item to the cart
+		setTimeout(() => {
+			cartCtx.addItem({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 });
+			setIsAddingToBag(false);
+		}, 1000);
+
+		setTimeout(() => {
+			setAddToCartSuccess(true);
+		}, 1000);
+
+		// Close the modal after a delay
+		setTimeout(() => {
+			props.onClose();
+		}, 2500);
 	};
 
 	return (
@@ -71,7 +96,6 @@ const ProductModal = (props) => {
 					{newPrice && <p className={'discount_styling'}>{product.discount}% off</p>}
 				</div>
 				<SizePicker onSizeSelect={handleSizeSelect} />
-				{/* Product images */}
 				<div className={classes['modal-images_wrapper']}>
 					<div className={classes['thumbnail-column']}>{subImagesContent}</div>
 					<ImageComponent
@@ -80,13 +104,12 @@ const ProductModal = (props) => {
 						alt={'Copyright by https://www.nike.com/'}
 					/>
 				</div>
-				{/* Checkout section */}
 				<div className={classes['order-buttons']}>
 					<button
 						className={[classes['button-order'], classes['button-order_black']].join(' ')}
 						onClick={cartItemAddHandler}
 					>
-						Add to bag
+						{isAddingToBag ? 'Adding...' : addToCartSuccess ? 'Successfully added to bag!' : 'Add to bag'}
 					</button>
 					<button className={[classes['button-order'], classes['button-order_white']].join(' ')}>
 						Favourite <img src={heart} alt="Heart icon" />

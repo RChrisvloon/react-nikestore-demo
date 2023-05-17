@@ -8,15 +8,23 @@ import classes from './Cart.module.css';
 import cross from '../../assets/cross.svg';
 
 const Cart = (props) => {
-	// Get cart information
+  // Accessing the cart context
 	const cartCtx = useContext(cartContext);
+
+  // Extracting totalamount and checking if there are items in the cart
 	const totalAmount = cartCtx.totalAmount;
 	const hasItems = cartCtx.items.length > 0;
 
+  // Handler for removing a cart item
+  const cartItemRemoveHandler = (id, size) => {
+    cartCtx.removeItem({id, size});
+  }
+
+  // Generate a list of cart items
 	const cartItemsList = (
 		<ul>
 			{cartCtx.items.map((item) => (
-				<CartItem key={item.id} id={item.id} amount={item.amount} />
+				<CartItem key={`${item.id}-${item.selectedSize}`} id={item.id} amount={item.amount} size={item.selectedSize} onRemove={cartItemRemoveHandler.bind(null, item.id, item.selectedSize)}/>
 			))}
 		</ul>
 	);
