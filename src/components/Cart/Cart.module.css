@@ -5,6 +5,11 @@
   /* justify-content: space-between; */
 }
 
+.empty-state_text{
+  margin-top: auto;
+  text-align: center;
+}
+
 /* Cart Header */
 .cart-header-main_wrapper {
   display: flex;
@@ -43,10 +48,10 @@
   display: flex;
   margin-top: auto;
   justify-content: space-between;
-  padding-right: 1rem;
+  padding: 1rem 1rem 1rem 0;
 }
 
-.amount_wrapper span {
-  font-size: 24px;
+.amount_wrapper h2 {
+  font-size: 18px; 
   font-weight: 1000;
 }

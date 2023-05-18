@@ -52,7 +52,7 @@ const ProductModal = (props) => {
 		}
 
 		// IMPROVE -- Add try catch to handle failed added items
-    // IMPROVE -- When api-based, request status can be used to display userfeedback
+		// IMPROVE -- When api-based, request status can be used to display userfeedback
 		setIsAddingToBag(true);
 		setAddToCartSuccess(false);
 
@@ -69,7 +69,7 @@ const ProductModal = (props) => {
 		// Close the modal after a delay
 		setTimeout(() => {
 			props.onClose();
-		}, 2500);
+		}, 2000);
 	};
 
 	return (
@@ -104,14 +104,11 @@ const ProductModal = (props) => {
 						alt={'Copyright by https://www.nike.com/'}
 					/>
 				</div>
-				<div className={classes['order-buttons']}>
-					<button
-						className={[classes['button-order'], classes['button-order_black']].join(' ')}
-						onClick={cartItemAddHandler}
-					>
+				<div className={'order-buttons'}>
+					<button className={'button-order button-order_black'} onClick={cartItemAddHandler}>
 						{isAddingToBag ? 'Adding...' : addToCartSuccess ? 'Successfully added to bag!' : 'Add to bag'}
 					</button>
-					<button className={[classes['button-order'], classes['button-order_white']].join(' ')}>
+					<button className={'button-order button-order_white'}>
 						Favourite <img src={heart} alt="Heart icon" />
 					</button>
 				</div>

@@ -210,3 +210,54 @@ html {
   min-height: 36px;
   min-width: 36px;
 }
+
+/* Modal Order buttons styling */
+.order-buttons{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.button-order {
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.button-order img {
+  width: 18px;
+}
+
+.button-order_black {
+  background-color: black;
+  color: white;
+}
+
+.button-order_black:hover {
+  opacity: 0.5;
+}
+
+.button-order_white {
+  border: 1px solid #cacacb;
+  background-color: white;
+  color: black;
+}
+
+.button-order_white:hover {
+  border-color: black;
+  background-color: white;
+  color: black;
+}
+
+.button-order.disabled {
+  color: rgb(204, 204, 204);
+  background-color: rgb(245, 245, 245);
+}
+
+.button-order.disabled:hover {
+  opacity: 1;
+  cursor: inherit;
+}

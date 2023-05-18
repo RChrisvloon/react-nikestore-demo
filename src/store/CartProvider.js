@@ -85,6 +85,12 @@ const cartReducer = (state, action) => {
 		// Clear the cart
 		return defaultCartState;
 	}
+
+  // CHECKOUT - Empty cart and store order in database
+	if (action.type === 'CHECKOUT') {
+    console.log('ORDER PLACED!');
+		return defaultCartState;
+	}
 };
 
 // CartProvider component to manage cart state using context
@@ -104,12 +110,17 @@ const CartProvider = (props) => {
 		dispatchCartAction({ type: 'CLEAR' });
 	};
 
+  const checkoutCartHandler = () => {
+    dispatchCartAction({type: 'CHECKOUT'});
+  }
+
 	const cartContext = {
 		items: cartState.items,
 		totalAmount: cartState.totalAmount,
 		addItem: addItemToCartHandler,
 		removeItem: removeItemToCartHandler,
 		clearCart: clearCartHandler,
+    checkoutCart: checkoutCartHandler
 	};
 
 	return <CartContext.Provider value={cartContext}>{props.children}</CartContext.Provider>;
