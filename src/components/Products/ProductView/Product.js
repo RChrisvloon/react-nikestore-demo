@@ -26,7 +26,7 @@ const Product = (props) => {
 				alt={'Copyright by https://www.nike.com/'}
 			/>
 			<div className={classes['product-card_info']}>
-				<h3 className={classes['product-card_title']}>{props.title}</h3>
+				<h3 className={classes['product-card_title']}>{props.id}. {props.title}</h3>
 				<h4 className={classes['product-card_subtitle']}>{props.description}</h4>
 				<div className={classes['product-card_priceinfo']}>
 					<p>

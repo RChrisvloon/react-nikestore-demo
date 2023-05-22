@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import classes from './SizePicker.module.css';
-
-const DUMMY_SIZES = [38.5, 39, 40, 40.5, 41, 41.5, 42, 42.5, 43, 43.5, 44, 44.5, 45, 45.5, 46, 46.5, 47, 47.5, 48];
+import DUMMY_SIZES from '../../../store/DummySizes';
 
 const SizePicker = (props) => {
   const [activeSize, setActiveSize] = useState(false);

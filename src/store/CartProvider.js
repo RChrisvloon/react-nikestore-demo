@@ -2,13 +2,13 @@ import { useReducer } from 'react';
 import CartContext from './cart-context';
 
 const defaultCartState = {
-	items: [], // (id, newPrice, selectedSize, amount)
+	items: [], // (id, price, newPrice, selectedSize, amount)
 	totalAmount: 0,
 };
 
 // Reducer function to manage cart state
 const cartReducer = (state, action) => {
-  // ADD - Item to cart
+	// ADD - Item to cart
 	if (action.type === 'ADD') {
 		let updatedTotalAmount;
 
@@ -40,19 +40,19 @@ const cartReducer = (state, action) => {
 			updatedItems = state.items.concat(action.item);
 		}
 
+    console.log(state.items);
 		return {
 			items: updatedItems,
 			totalAmount: updatedTotalAmount,
 		};
 	}
 
-  // REMOVE - Item from cart
+	// REMOVE - Item from cart
 	if (action.type === 'REMOVE') {
 		// Check if item with same id & size exists in the cart
-		const existingItemIndex = state.items.findIndex(
+		const existingItem = state.items.find(
 			(item) => item.id === action.item.id && item.selectedSize === action.item.size
 		);
-		const existingItem = state.items[existingItemIndex];
 
 		let updatedTotalAmount;
 
@@ -74,21 +74,60 @@ const cartReducer = (state, action) => {
 		};
 	}
 
-  // CHANGE - Amount of product in cart
-	if (action.type === 'CHANGE') {
-		// TO BE IMPLEMENTED
-		return defaultCartState;
+	// CHANGE - Amount of product in cart
+	if (action.type === 'CHANGE_SIZE') {
+		const productId = action.item.id;
+		const amountOfOldShoe = action.item.amount;
+		const oldSize = action.item.oldSize;
+		const newSize = action.item.newSize;
+
+		// 1. Find shoe with old/current size in cart
+		const oldShoe = state.items.find(
+			(item) => item.id === productId && item.selectedSize === oldSize
+		);
+
+		// 2. Create updatedItems variable for updated state
+		let updatedItems;
+
+		// 2.1 Filter out the old item
+		updatedItems = state.items.filter((item) => item !== oldShoe);
+    console.log(updatedItems);
+
+		// 3. Find shoe newly selected size in cart
+		const newShoeIndex = state.items.findIndex(
+			(item) => item.id === productId && item.selectedSize === newSize
+		);
+		const newShoe = state.items[newShoeIndex];
+
+		// 3.1 Item with new size already in cart
+		if (newShoe) {
+			// Update the amount + amount of the old shoe size
+			const updatedItem = {
+				...newShoe,
+				amount: newShoe.amount + amountOfOldShoe,
+			};
+			updatedItems = [...state.items];
+			updatedItems[newShoeIndex] = updatedItem;
+		} else {
+			// Item is not in the cart, add it to the items array
+			updatedItems = state.items.concat({id: productId, price: oldShoe.price, newPrice: oldShoe.newPrice, selectedSize: newSize, amount: amountOfOldShoe});
+		}
+
+		return {
+			items: updatedItems,
+			totalAmount: state.totalAmount
+		};
 	}
 
-  // CLEAR - Remove an item completely from the cart
+	// CLEAR - Remove an item completely from the cart
 	if (action.type === 'CLEAR') {
 		// Clear the cart
 		return defaultCartState;
 	}
 
-  // CHECKOUT - Empty cart and store order in database
+	// CHECKOUT - Empty cart and store order in database
 	if (action.type === 'CHECKOUT') {
-    console.log('ORDER PLACED!');
+		console.log('ORDER PLACED!');
 		return defaultCartState;
 	}
 };
@@ -97,7 +136,6 @@ const cartReducer = (state, action) => {
 const CartProvider = (props) => {
 	const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
 
-	// Handler functions to modify the cart state
 	const addItemToCartHandler = (item) => {
 		dispatchCartAction({ type: 'ADD', item: item });
 	};
@@ -106,21 +144,26 @@ const CartProvider = (props) => {
 		dispatchCartAction({ type: 'REMOVE', item: item });
 	};
 
+	const changeSizeHandler = (item) => {
+		dispatchCartAction({ type: 'CHANGE_SIZE', item: item });
+	};
+
 	const clearCartHandler = () => {
 		dispatchCartAction({ type: 'CLEAR' });
 	};
 
-  const checkoutCartHandler = () => {
-    dispatchCartAction({type: 'CHECKOUT'});
-  }
+	const checkoutCartHandler = () => {
+		dispatchCartAction({ type: 'CHECKOUT' });
+	};
 
 	const cartContext = {
 		items: cartState.items,
 		totalAmount: cartState.totalAmount,
 		addItem: addItemToCartHandler,
 		removeItem: removeItemToCartHandler,
+		changeSize: changeSizeHandler,
 		clearCart: clearCartHandler,
-    checkoutCart: checkoutCartHandler
+		checkoutCart: checkoutCartHandler,
 	};
 
 	return <CartContext.Provider value={cartContext}>{props.children}</CartContext.Provider>;

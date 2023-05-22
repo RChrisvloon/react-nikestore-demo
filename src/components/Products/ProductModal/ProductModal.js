@@ -6,6 +6,7 @@ import useDiscountCalc from '../../../hooks/use-discountCalc';
 import CartContext from '../../../store/cart-context';
 import SizePicker from './SizePicker';
 import ImageComponent from '../../UI/ImageComponent/ImageComponent';
+import DUMMY_SIZES from '../../../store/DummySizes';
 
 // Import svg file(s)
 import cross from '../../../assets/cross.svg';
@@ -45,11 +46,11 @@ const ProductModal = (props) => {
 
 	// Handler for adding item to cart
 	const cartItemAddHandler = () => {
-		// Check if size is selected
-		if (!selectedSize) {
-			window.alert('Please select a valid shoesize.');
-			return;
-		}
+		// Check if valid size is selected
+    if (!selectedSize || selectedSize > Math.max(...DUMMY_SIZES) || selectedSize < Math.min(...DUMMY_SIZES)) {
+      window.alert('Invalid shoesize selected!');
+      return;
+    }
 
 		// IMPROVE -- Add try catch to handle failed added items
 		// IMPROVE -- When api-based, request status can be used to display userfeedback
