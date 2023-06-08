@@ -14,9 +14,9 @@ const FilterOptionSection = (props) => {
 		<div className={classes['filter-section']}>
 			<div className={classes['filter-section-title_wrapper']}>
 				<h3 className={classes['filter-section-title']}>{props.title}</h3>
-				<img src={downArrow} alt="Copyright by https://tablericons.com/" onClick={toggleShowCategory}/>
+				<img className={!showCategory ? classes['filter-section_collapsed'] : ''} src={downArrow} alt="Copyright by https://tablericons.com/" onClick={toggleShowCategory}/>
 			</div>
-      <div className={[classes['filter-section-options'], !showCategory ? classes['filterOption_hidden'] : ''].join(' ')}>{props.children}</div>
+      <div className={[classes['filter-section-options'], !showCategory ? classes['filter-section-options_hidden'] : ''].join(' ')}>{props.children}</div>
 		</div>
 	);
 };

@@ -2,6 +2,8 @@
 .filter-section {
   display: flex;
   flex-direction: column;
+  /* padding-bottom: 2rem; */
+  margin-bottom: 1rem;
 }
 
 .filter-section-title_wrapper {
@@ -19,8 +21,21 @@
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-in;
 }
 
-.filterOption_hidden{
-  display: none;
+.filter-section-options > :last-child {
+  padding-bottom: 2rem;
+}
+
+.filter-section-options_hidden{
+  max-height: 0;
+  transition: max-height 0.3s;
+  padding-bottom: 0;
+}
+
+.filter-section_collapsed {
+  transform: rotate(180deg);
 }
