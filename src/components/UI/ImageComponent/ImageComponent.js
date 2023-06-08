@@ -24,6 +24,7 @@ const ImageComponent = (props) => {
 				alt={props.alt}
 				onLoad={handleImageLoad}
 				onClick={props.onClick}
+        onMouseOver={props.onMouseOver}
 			/>
 		</Fragment>
 	);

@@ -17,12 +17,22 @@ const ProductModal = (props) => {
 	const [selectedSize, setSelectedSize] = useState(false);
 	const [isAddingToBag, setIsAddingToBag] = useState(false);
 	const [addToCartSuccess, setAddToCartSuccess] = useState(false);
+	const [displayedImage, setDisplayedImage] = useState(false);
 
 	// Context
 	const cartCtx = useContext(CartContext);
 
 	// Fetch product data
 	const product = useGetProduct(props.productId);
+
+	// Change the 'active' image on hover
+	const imageHoverHandler = (event) => {
+		// Get src of image being hovered over
+		const newImgSrc = event.target.src;
+
+		// Set active image to new image
+		setDisplayedImage(newImgSrc);
+	};
 
 	// Generate sub-images content
 	const subImagesContent = product.sub_images.map((img, key) => {
@@ -32,6 +42,7 @@ const ProductModal = (props) => {
 				className={'thumbnail_img'}
 				src={img}
 				alt={'Thumbnail owned by https://www.nike.com/'}
+				onMouseOver={imageHoverHandler}
 			/>
 		);
 	});
@@ -47,10 +58,14 @@ const ProductModal = (props) => {
 	// Handler for adding item to cart
 	const cartItemAddHandler = () => {
 		// Check if valid size is selected
-    if (!selectedSize || selectedSize > Math.max(...DUMMY_SIZES) || selectedSize < Math.min(...DUMMY_SIZES)) {
-      window.alert('Invalid shoesize selected!');
-      return;
-    }
+		if (
+			!selectedSize ||
+			selectedSize > Math.max(...DUMMY_SIZES) ||
+			selectedSize < Math.min(...DUMMY_SIZES)
+		) {
+			window.alert('Invalid shoesize selected!');
+			return;
+		}
 
 		// IMPROVE -- Add try catch to handle failed added items
 		// IMPROVE -- When api-based, request status can be used to display userfeedback
@@ -100,7 +115,7 @@ const ProductModal = (props) => {
 				<div className={classes['modal-images_wrapper']}>
 					<div className={classes['thumbnail-column']}>{subImagesContent}</div>
 					<ImageComponent
-						src={product.img_url}
+						src={!displayedImage ? product.img_url : displayedImage}
 						className={'modal-product_image'}
 						alt={'Copyright by https://www.nike.com/'}
 					/>
