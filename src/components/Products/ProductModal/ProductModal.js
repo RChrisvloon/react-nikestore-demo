@@ -34,6 +34,10 @@ const ProductModal = (props) => {
 		setDisplayedImage(newImgSrc);
 	};
 
+  const resetImageHandler = () => {
+    setDisplayedImage(false);
+  }
+
 	// Generate sub-images content
 	const subImagesContent = product.sub_images.map((img, key) => {
 		return (
@@ -72,7 +76,7 @@ const ProductModal = (props) => {
 		setIsAddingToBag(true);
 		setAddToCartSuccess(false);
 
-		// Add item to the cart
+		// Add item to the cart (With artificial delay)
 		setTimeout(() => {
 			cartCtx.addItem({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 });
 			setIsAddingToBag(false);
@@ -112,7 +116,7 @@ const ProductModal = (props) => {
 					{newPrice && <p className={'discount_styling'}>{product.discount}% off</p>}
 				</div>
 				<SizePicker onSizeSelect={handleSizeSelect} />
-				<div className={classes['modal-images_wrapper']}>
+				<div className={classes['modal-images_wrapper']} onMouseLeave={resetImageHandler}>
 					<div className={classes['thumbnail-column']}>{subImagesContent}</div>
 					<ImageComponent
 						src={!displayedImage ? product.img_url : displayedImage}

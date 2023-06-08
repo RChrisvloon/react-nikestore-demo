@@ -19,7 +19,7 @@ const Header = (props) => {
 						<img className={classes['app-logo']} src={nike} alt="Copyright by https://www.nike.com/"/>
 					</a>
 					<CategoryMenu />
-          {/*Passing props down multiple levels is 'bad', React redux will fix this later*/}
+          {/*IMPROVE: Passing props down multiple levels is bad, React redux will fix this later*/}
 					<CheckoutGroup showCart={props.showCart}/>
 				</div>
 			</header>
