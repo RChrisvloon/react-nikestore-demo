@@ -125,7 +125,7 @@ const ProductModal = (props) => {
 					/>
 				</div>
 				<div className={'order-buttons'}>
-					<button className={'button-order button-order_black'} onClick={cartItemAddHandler}>
+					<button className={'button-order button-order_black'} onClick={cartItemAddHandler} disabled={isAddingToBag ? true : addToCartSuccess ? true : ''}>
 						{isAddingToBag ? 'Adding...' : addToCartSuccess ? 'Successfully added to bag!' : 'Add to bag'}
 					</button>
 					<button className={'button-order button-order_white'}>

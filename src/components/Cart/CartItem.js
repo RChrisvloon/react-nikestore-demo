@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import cartContext from '../../store/cart-context';
 import useGetProduct from '../../hooks/use-getProduct';
 import useDiscountCalc from '../../hooks/use-discountCalc';
@@ -11,6 +11,13 @@ import heart from '../../assets/heart.svg';
 import trash from '../../assets/trash.svg';
 
 const CartItem = (props) => {
+	const [amount, setAmount] = useState(props.amount);
+
+	// Update the local state when the amount prop changes
+	useEffect(() => {
+		setAmount(props.amount);
+	}, [props.amount]);
+
 	// Get product and discounted price using custom-hooks
 	const product = useGetProduct(props.id);
 	const newPrice = useDiscountCalc(product.price, product.discount);
@@ -31,21 +38,21 @@ const CartItem = (props) => {
 	const sizeChangeHandler = (event) => {
 		// Get product id and amount of the current product
 		const productId = props.id;
-    const amount = props.amount;
+		const amount = props.amount;
 
 		// Get old & newly seleted size
 		const oldSize = props.size;
 		const newSize = +event.target.value;
 
-    // Check if newly selected shoesize is valid
-    if (!newSize || newSize > Math.max(...DUMMY_SIZES) || newSize < Math.min(...DUMMY_SIZES)) {
-      window.alert('Invalid shoesize selected!');
-    }
+		// Check if newly selected shoesize is valid
+		if (!newSize || newSize > Math.max(...DUMMY_SIZES) || newSize < Math.min(...DUMMY_SIZES)) {
+			window.alert('Invalid shoesize selected!');
+		}
 
-    // Check if the current amount of this item is valid (MIGHT BE UNNECESSARY TO CHECK SINCE IT PROBABLY WOULD'VE BROKEN ALREADY)
-    if (!amount || amount < 0 || amount > 9) {
-      window.alert('Incorrect amount of this item in cart');
-    }
+		// Check if the current amount of this item is valid (MIGHT BE UNNECESSARY TO CHECK SINCE IT PROBABLY WOULD'VE BROKEN ALREADY)
+		if (!amount || amount < 0 || amount > 9) {
+			window.alert('Incorrect amount of this item in cart');
+		}
 
 		// Call CartContext changeSizeHandler
 		cartCtx.changeSize({ id: productId, oldSize: oldSize, newSize: newSize, amount: amount });
@@ -81,7 +88,7 @@ const CartItem = (props) => {
 						</div>
 						<div className={classes['dropdown_wrapper']}>
 							<label>Amount:</label>
-							<select defaultValue={props.amount}>
+							<select value={amount}>
 								<option>1</option>
 								<option>2</option>
 								<option>3</option>

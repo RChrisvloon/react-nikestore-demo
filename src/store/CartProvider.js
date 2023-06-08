@@ -40,7 +40,6 @@ const cartReducer = (state, action) => {
 			updatedItems = state.items.concat(action.item);
 		}
 
-    console.log(state.items);
 		return {
 			items: updatedItems,
 			totalAmount: updatedTotalAmount,
@@ -81,41 +80,51 @@ const cartReducer = (state, action) => {
 		const oldSize = action.item.oldSize;
 		const newSize = action.item.newSize;
 
-		// 1. Find shoe with old/current size in cart
+		// Create updatedItems variable for updated state
+		let updatedItems;
+
+		// Find shoe with old/current size in cart and filter out
 		const oldShoe = state.items.find(
 			(item) => item.id === productId && item.selectedSize === oldSize
 		);
 
-		// 2. Create updatedItems variable for updated state
-		let updatedItems;
+		// Filter out the old item
+		updatedItems = state.items.filter(
+			(item) => !(item.id === oldShoe.id && item.selectedSize === oldShoe.selectedSize)
+		);
 
-		// 2.1 Filter out the old item
-		updatedItems = state.items.filter((item) => item !== oldShoe);
-    console.log(updatedItems);
-
-		// 3. Find shoe newly selected size in cart
-		const newShoeIndex = state.items.findIndex(
+		// Find shoe newly selected size in cart
+		const newShoeIndex = updatedItems.findIndex(
 			(item) => item.id === productId && item.selectedSize === newSize
 		);
-		const newShoe = state.items[newShoeIndex];
+		const newShoe = updatedItems[newShoeIndex];
 
-		// 3.1 Item with new size already in cart
+    console.log('1', updatedItems);
+		// Item with new size already in cart
 		if (newShoe) {
 			// Update the amount + amount of the old shoe size
 			const updatedItem = {
 				...newShoe,
 				amount: newShoe.amount + amountOfOldShoe,
 			};
-			updatedItems = [...state.items];
 			updatedItems[newShoeIndex] = updatedItem;
+      console.log('2', updatedItems);
 		} else {
+      console.log('3', updatedItems);
 			// Item is not in the cart, add it to the items array
-			updatedItems = state.items.concat({id: productId, price: oldShoe.price, newPrice: oldShoe.newPrice, selectedSize: newSize, amount: amountOfOldShoe});
+			updatedItems = updatedItems.concat({
+				id: productId,
+				price: oldShoe.price,
+				newPrice: oldShoe.newPrice,
+				selectedSize: newSize,
+				amount: amountOfOldShoe,
+			});
+      console.log('4', updatedItems);
 		}
 
 		return {
 			items: updatedItems,
-			totalAmount: state.totalAmount
+			totalAmount: state.totalAmount,
 		};
 	}
 
