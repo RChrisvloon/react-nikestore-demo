@@ -28,7 +28,7 @@
 
 .banner-inner_arrow {
 	padding: 1rem;
-  z-index: 2;
+  z-index: 1;
   background-color: #f7f7f7;
   cursor: pointer;
 }

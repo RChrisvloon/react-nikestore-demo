@@ -99,7 +99,6 @@ const cartReducer = (state, action) => {
 		);
 		const newShoe = updatedItems[newShoeIndex];
 
-    console.log('1', updatedItems);
 		// Item with new size already in cart
 		if (newShoe) {
 			// Update the amount + amount of the old shoe size
@@ -108,9 +107,7 @@ const cartReducer = (state, action) => {
 				amount: newShoe.amount + amountOfOldShoe,
 			};
 			updatedItems[newShoeIndex] = updatedItem;
-      console.log('2', updatedItems);
 		} else {
-      console.log('3', updatedItems);
 			// Item is not in the cart, add it to the items array
 			updatedItems = updatedItems.concat({
 				id: productId,
@@ -119,7 +116,6 @@ const cartReducer = (state, action) => {
 				selectedSize: newSize,
 				amount: amountOfOldShoe,
 			});
-      console.log('4', updatedItems);
 		}
 
 		return {
