@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../../store/cartSlice';
 import useGetProduct from '../../../hooks/use-getProduct';
@@ -10,6 +10,7 @@ import SizePicker from './SizePicker';
 import ImageComponent from '../../UI/ImageComponent/ImageComponent';
 import cross from '../../../assets/cross.svg';
 import heart from '../../../assets/heart.svg';
+import { uiActions } from '../../../store/uiSlice';
 
 const ProductModal = (props) => {
 	const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../store/cartSlice';
+import { uiActions } from '../../store/uiSlice';
 import classes from './CheckoutGroup.module.css';
 import basket from '../../assets/basket.svg';
 import heart from '../../assets/heart.svg';
@@ -11,7 +11,7 @@ const CheckoutGroup = () => {
 
 	// Accessing cart data from store
 	const toggleCartHandler = () => {
-		dispatch(cartActions.toggleCart());
+		dispatch(uiActions.toggleCart());
 	};
 
 	const cartState = useSelector((state) => state.cart);

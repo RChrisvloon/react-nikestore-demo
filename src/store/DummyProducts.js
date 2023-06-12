@@ -1,4 +1,4 @@
-// Default Products - WILL BE API BASED LATER PROBABLY
+// Default Products
 const DUMMY_PRODUCTS = [
 	{
     id: 1,

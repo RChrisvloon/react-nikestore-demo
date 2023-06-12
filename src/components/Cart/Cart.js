@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cartSlice';
+import { uiActions } from '../../store/uiSlice';
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import cross from '../../assets/cross.svg';
 
 const Cart = (props) => {
+  // State variables
 	const dispatch = useDispatch();
-
-	// State variables
 	const [isCheckingout, setIsCheckingOut] = useState(false);
 	const [checkoutIsSuccess, setCheckoutIsSuccess] = useState(false);
 
@@ -20,7 +20,7 @@ const Cart = (props) => {
 
 	// Handler for showing/hiding cart
 	const toggleCartHandler = () => {
-		dispatch(cartActions.toggleCart());
+		dispatch(uiActions.toggleCart());
 	};
 
 	// Handler for removing a cart item

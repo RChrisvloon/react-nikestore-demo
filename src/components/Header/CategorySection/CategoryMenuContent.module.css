@@ -1,0 +1,16 @@
+/* Categorygroup styling */
+.categoryGroup_title {
+	font-weight: 1000;
+	margin-bottom: 14px;
+}
+
+.categoryGroup_row {
+	margin-bottom: 1rem;
+	font-size: 14px;
+	color: #757575;
+	font-weight: 600;
+}
+
+.categoryGroup_row a:hover {
+	color: black;
+}

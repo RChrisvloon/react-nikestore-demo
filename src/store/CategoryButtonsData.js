@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import classes from './CategoryMenu.module.css';
-
-// Default categories
-const MENU_BUTTONS = [
+const CATEGORY_BUTTONS = [
 	{
 		name: 'New & Featured',
 		content: [
@@ -691,55 +687,4 @@ const MENU_BUTTONS = [
 	},
 ];
 
-const CategoryMenu = (props) => {
-	const [activeDropdown, setActiveDropdown] = useState(null);
-
-	const handleMouseEnter = (index) => {
-		setActiveDropdown(index);
-	};
-
-	const handleMouseLeave = () => {
-		setActiveDropdown(null);
-	};
-
-	// Return li-element for each category
-	const menuButtons = MENU_BUTTONS.map((menuButton, index) => {
-		const isDropdownActive = activeDropdown === index;
-
-		return (
-			<li
-				key={menuButton.name}
-				className={`${classes.menuButton} ${isDropdownActive ? classes.open : ''}`}
-				onMouseEnter={() => handleMouseEnter(index)}
-				onMouseLeave={handleMouseLeave}
-			>
-				<button>{menuButton.name}</button>
-				{isDropdownActive && (
-					<div className={classes.dropdownContent}>
-						{/* IMPROVE -- MAKE CATEGORYGROUP-COMPONENT */}
-						{menuButton.content.map((group, groupIndex) => {
-							return (
-								<div key={groupIndex} className={classes.categoryGroup}>
-									<h2 className={classes['categoryGroup_title']}>{group.group}</h2>
-									<div className={classes['categoryGroup_rows']}>
-										{group.rows.map((row, rowIndex) => {
-											return (
-												<div key={rowIndex} className={classes['categoryGroup_row']}>
-													<a href={row.url}>{row.label}</a>
-												</div>
-											);
-										})}
-									</div>
-								</div>
-							);
-						})}
-					</div>
-				)}
-			</li>
-		);
-	});
-
-	return <ul className={classes.categoryMenu}>{menuButtons}</ul>;
-};
-
-export default CategoryMenu;
+export default CATEGORY_BUTTONS;

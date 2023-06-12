@@ -3,7 +3,7 @@ import classes from './Header.module.css';
 import TopHeader from './TopHeader';
 import nike from '../../assets/nike.svg';
 import CheckoutGroup from './CheckoutGroup';
-import CategoryMenu from './CategoryMenu';
+import CategoryMenu from './CategorySection/CategoryMenu';
 import Banner from '../UI/Banner/Banner';
 
 // Header consists of 3 parts: Topheader, header(img, CategoryMenu, CheckoutGroup) & Banner

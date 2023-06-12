@@ -8,7 +8,7 @@ import Cart from './components/Cart/Cart';
 
 function App() {
 	// Access cartdata from store
-	const showCart = useSelector((state) => state.cart.showCart);
+	const showCart = useSelector((state) => state.ui.cartIsVisible);
 
 	// Filter menu visibility state
 	const [filterMenuisShown, setFilterMenuIsShown] = useState(true);
@@ -20,7 +20,6 @@ function App() {
 
 	return (
 		<Fragment>
-			{/* Render the cart component if cartIsShown is true */}
 			{showCart && <Cart />}
 			<Header />
 			<main>
