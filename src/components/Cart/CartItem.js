@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useGetProduct from '../../hooks/use-getProduct';
 import useDiscountCalc from '../../hooks/use-discountCalc';
 import ImageComponent from '../UI/ImageComponent/ImageComponent';
@@ -13,19 +13,19 @@ import { cartActions } from '../../store/cartSlice';
 
 const CartItem = (props) => {
 	const dispatch = useDispatch();
-  
+
 	const [amount, setAmount] = useState(props.amount);
 
-  // Get product and discounted price using custom-hooks
-  const product = useGetProduct(props.id);
-  const newPrice = useDiscountCalc(product.price, product.discount);
+	// Get product and discounted price using custom-hooks
+	const product = useGetProduct(props.id);
+	const newPrice = useDiscountCalc(product.price, product.discount);
 
 	// Update the local state when the amount prop changes
 	useEffect(() => {
 		setAmount(props.amount);
 	}, [props.amount]);
 
-	// Generate sizeoption-elements
+	// Generate size & amount-options
 	const sizeOptions = DUMMY_SIZES.map((item) => {
 		return (
 			<option key={item} value={item}>
@@ -33,6 +33,10 @@ const CartItem = (props) => {
 			</option>
 		);
 	});
+
+	const amountOptions = Array.from({ length: 10 }, (_, index) => (
+		<option value={index + 1}>{index + 1}</option>
+	));
 
 	// Handle user changing shoe size
 	const sizeChangeHandler = (event) => {
@@ -50,15 +54,24 @@ const CartItem = (props) => {
 		}
 
 		// Check if the current amount of this item is valid (MIGHT BE UNNECESSARY TO CHECK SINCE IT PROBABLY WOULD'VE BROKEN ALREADY)
-		if (!amount || amount < 0 || amount > 9) {
+		if (!amount || amount < 0 || amount > 10) {
 			window.alert('Incorrect amount of this item in cart');
 		}
 
-		// Call store.cartSlice changeSizeHandler
+		// Change size by calling changeSize store-method
 		dispatch(
 			cartActions.changeSize({ id: productId, oldSize: oldSize, newSize: newSize, amount: amount })
 		);
 	};
+
+  const amountChangeHandler = (event) => {
+    // Get shoesize and new amount
+    const shoeSize = props.size;
+    const newAmount = +event.target.value;
+
+    dispatch(cartActions.changeAmount({id: product.id, shoeSize: shoeSize, newPrice: newPrice, newAmount: newAmount}));
+    console.log();
+  }
 
 	return (
 		<li className={classes.item}>
@@ -90,17 +103,8 @@ const CartItem = (props) => {
 						</div>
 						<div className={classes['dropdown_wrapper']}>
 							<label>Amount:</label>
-							<select defaultValue={amount} value={amount}>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
-								<option>8</option>
-								<option>9</option>
-								<option>10</option>
+							<select value={amount} onChange={amountChangeHandler}>
+								{amountOptions}
 							</select>
 						</div>
 					</div>
