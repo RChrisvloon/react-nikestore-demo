@@ -1,27 +1,31 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../store/cartSlice';
 import Modal from '../UI/Modal';
-import cartContext from '../../store/cart-context';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
-
-// Import svg file(s)
 import cross from '../../assets/cross.svg';
 
 const Cart = (props) => {
+	const dispatch = useDispatch();
+
 	// State variables
 	const [isCheckingout, setIsCheckingOut] = useState(false);
 	const [checkoutIsSuccess, setCheckoutIsSuccess] = useState(false);
 
-	// Accessing the cart context
-	const cartCtx = useContext(cartContext);
+	// Accessing cartdata from store
+	const cartState = useSelector((state) => state.cart);
+	const totalAmount = cartState.totalAmount;
+	const hasItems = cartState.items.length > 0;
 
-	// Extracting totalamount and checking if there are items in the cart
-	const totalAmount = cartCtx.totalAmount;
-	const hasItems = cartCtx.items.length > 0;
+	// Handler for showing/hiding cart
+	const toggleCartHandler = () => {
+		dispatch(cartActions.toggleCart());
+	};
 
 	// Handler for removing a cart item
 	const cartItemRemoveHandler = (id, size) => {
-		cartCtx.removeItem({ id, size });
+		dispatch(cartActions.remove({ id: id, size: size }));
 	};
 
 	const checkoutHandler = () => {
@@ -35,7 +39,7 @@ const Cart = (props) => {
 		setCheckoutIsSuccess(false);
 
 		setTimeout(() => {
-			cartCtx.checkoutCart();
+			dispatch(cartActions.checkout());
 			setIsCheckingOut(false);
 		}, 1000);
 
@@ -45,14 +49,14 @@ const Cart = (props) => {
 
 		// Close the modal after a delay
 		setTimeout(() => {
-			props.hideCart();
+			dispatch(cartActions.toggleCart());
 		}, 3000);
 	};
 
 	// Generate a list of cart items
 	const cartItemsList = (
 		<ul>
-			{cartCtx.items.map((item) => (
+			{cartState.items.map((item) => (
 				<CartItem
 					key={`${item.id}-${item.selectedSize}`}
 					id={item.id}
@@ -65,14 +69,14 @@ const Cart = (props) => {
 	);
 
 	return (
-		<Modal onClose={props.hideCart}>
+		<Modal onClose={toggleCartHandler}>
 			<div className={classes['cart_wrapper']}>
 				<div className={classes['cart-header-main_wrapper']}>
 					<div className={classes['cart-header-sub_wrapper']}>
 						<h2 className={classes['cart-header_text']}>Your bag</h2>
 						<img
 							className={'modal-header_closeBtn'}
-							onClick={props.hideCart}
+							onClick={toggleCartHandler}
 							src={cross}
 							alt="Copyright by https://tablericons.com/"
 						/>

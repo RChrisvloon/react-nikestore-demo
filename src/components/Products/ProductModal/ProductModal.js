@@ -1,26 +1,24 @@
-import React, { useContext, useState } from 'react';
-import Modal from '../../UI/Modal';
-import classes from './ProductModal.module.css';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../../store/cartSlice';
 import useGetProduct from '../../../hooks/use-getProduct';
 import useDiscountCalc from '../../../hooks/use-discountCalc';
-import CartContext from '../../../store/cart-context';
+import DUMMY_SIZES from '../../../store/DummySizes';
+import Modal from '../../UI/Modal';
+import classes from './ProductModal.module.css';
 import SizePicker from './SizePicker';
 import ImageComponent from '../../UI/ImageComponent/ImageComponent';
-import DUMMY_SIZES from '../../../store/DummySizes';
-
-// Import svg file(s)
 import cross from '../../../assets/cross.svg';
 import heart from '../../../assets/heart.svg';
 
 const ProductModal = (props) => {
+	const dispatch = useDispatch();
+
 	// State variables
 	const [selectedSize, setSelectedSize] = useState(false);
 	const [isAddingToBag, setIsAddingToBag] = useState(false);
 	const [addToCartSuccess, setAddToCartSuccess] = useState(false);
 	const [displayedImage, setDisplayedImage] = useState(false);
-
-	// Context
-	const cartCtx = useContext(CartContext);
 
 	// Fetch product data
 	const product = useGetProduct(props.productId);
@@ -34,9 +32,9 @@ const ProductModal = (props) => {
 		setDisplayedImage(newImgSrc);
 	};
 
-  const resetImageHandler = () => {
-    setDisplayedImage(false);
-  }
+	const resetImageHandler = () => {
+		setDisplayedImage(false);
+	};
 
 	// Generate sub-images content
 	const subImagesContent = product.sub_images.map((img, key) => {
@@ -78,7 +76,9 @@ const ProductModal = (props) => {
 
 		// Add item to the cart (With artificial delay)
 		setTimeout(() => {
-			cartCtx.addItem({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 });
+			dispatch(
+				cartActions.add({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 })
+			);
 			setIsAddingToBag(false);
 		}, 1000);
 
@@ -125,7 +125,11 @@ const ProductModal = (props) => {
 					/>
 				</div>
 				<div className={'order-buttons'}>
-					<button className={'button-order button-order_black'} onClick={cartItemAddHandler} disabled={isAddingToBag ? true : addToCartSuccess ? true : ''}>
+					<button
+						className={'button-order button-order_black'}
+						onClick={cartItemAddHandler}
+						disabled={isAddingToBag ? true : addToCartSuccess ? true : ''}
+					>
 						{isAddingToBag ? 'Adding...' : addToCartSuccess ? 'Successfully added to bag!' : 'Add to bag'}
 					</button>
 					<button className={'button-order button-order_white'}>

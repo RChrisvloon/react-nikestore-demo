@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect } from 'react';
-import cartContext from '../../store/cart-context';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import useGetProduct from '../../hooks/use-getProduct';
 import useDiscountCalc from '../../hooks/use-discountCalc';
 import ImageComponent from '../UI/ImageComponent/ImageComponent';
@@ -9,21 +9,21 @@ import DUMMY_SIZES from '../../store/DummySizes';
 // Import svg file(s)
 import heart from '../../assets/heart.svg';
 import trash from '../../assets/trash.svg';
+import { cartActions } from '../../store/cartSlice';
 
 const CartItem = (props) => {
+	const dispatch = useDispatch();
+  
 	const [amount, setAmount] = useState(props.amount);
+
+  // Get product and discounted price using custom-hooks
+  const product = useGetProduct(props.id);
+  const newPrice = useDiscountCalc(product.price, product.discount);
 
 	// Update the local state when the amount prop changes
 	useEffect(() => {
 		setAmount(props.amount);
 	}, [props.amount]);
-
-	// Get product and discounted price using custom-hooks
-	const product = useGetProduct(props.id);
-	const newPrice = useDiscountCalc(product.price, product.discount);
-
-	// Context
-	const cartCtx = useContext(cartContext);
 
 	// Generate sizeoption-elements
 	const sizeOptions = DUMMY_SIZES.map((item) => {
@@ -54,8 +54,10 @@ const CartItem = (props) => {
 			window.alert('Incorrect amount of this item in cart');
 		}
 
-		// Call CartContext changeSizeHandler
-		cartCtx.changeSize({ id: productId, oldSize: oldSize, newSize: newSize, amount: amount });
+		// Call store.cartSlice changeSizeHandler
+		dispatch(
+			cartActions.changeSize({ id: productId, oldSize: oldSize, newSize: newSize, amount: amount })
+		);
 	};
 
 	return (
@@ -88,7 +90,7 @@ const CartItem = (props) => {
 						</div>
 						<div className={classes['dropdown_wrapper']}>
 							<label>Amount:</label>
-							<select value={amount}>
+							<select defaultValue={amount} value={amount}>
 								<option>1</option>
 								<option>2</option>
 								<option>3</option>
