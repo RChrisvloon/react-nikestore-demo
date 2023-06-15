@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './ResultsHeader.module.css';
-import DUMMY_PRODUCTS from '../../../store/DummyProducts';
+import DUMMY_PRODUCTS from '../../../store/DummyData/DummyProducts';
 
 // Import svg file(s)
 import downArrow from '../../../assets/down-arrow.svg';

@@ -4,12 +4,12 @@ import useGetProduct from '../../hooks/use-getProduct';
 import useDiscountCalc from '../../hooks/use-discountCalc';
 import ImageComponent from '../UI/ImageComponent/ImageComponent';
 import classes from './CartItem.module.css';
-import DUMMY_SIZES from '../../store/DummySizes';
+import DUMMY_SIZES from '../../store/DummyData/DummySizes';
 
 // Import svg file(s)
 import heart from '../../assets/heart.svg';
 import trash from '../../assets/trash.svg';
-import { cartActions } from '../../store/cartSlice';
+import { cartActions } from '../../store/cartData/cartSlice';
 
 const CartItem = (props) => {
 	const dispatch = useDispatch();
@@ -35,7 +35,9 @@ const CartItem = (props) => {
 	});
 
 	const amountOptions = Array.from({ length: 10 }, (_, index) => (
-		<option value={index + 1}>{index + 1}</option>
+		<option key={index + 1} value={index + 1}>
+			{index + 1}
+		</option>
 	));
 
 	// Handle user changing shoe size
@@ -64,14 +66,21 @@ const CartItem = (props) => {
 		);
 	};
 
-  const amountChangeHandler = (event) => {
-    // Get shoesize and new amount
-    const shoeSize = props.size;
-    const newAmount = +event.target.value;
+	const amountChangeHandler = (event) => {
+		// Get shoesize and new amount
+		const shoeSize = props.size;
+		const newAmount = +event.target.value;
 
-    dispatch(cartActions.changeAmount({id: product.id, shoeSize: shoeSize, newPrice: newPrice, newAmount: newAmount}));
-    console.log();
-  }
+		dispatch(
+			cartActions.changeAmount({
+				id: product.id,
+				shoeSize: shoeSize,
+				newPrice: newPrice,
+				newAmount: newAmount,
+			})
+		);
+		console.log();
+	};
 
 	return (
 		<li className={classes.item}>

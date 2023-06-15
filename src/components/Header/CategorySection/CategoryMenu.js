@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './CategoryMenu.module.css';
-import CATEGORY_BUTTONS from '../../../store/CategoryButtonsData';
+import CATEGORY_BUTTONS from '../../../store/DummyData/CategoryButtonsData';
 import CategoryMenuContent from './CategoryMenuContent';
 
 const CategoryMenu = (props) => {

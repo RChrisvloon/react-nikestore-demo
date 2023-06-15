@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../store/cartSlice';
+import { cartActions } from '../../store/cartData/cartSlice';
 import { uiActions } from '../../store/uiSlice';
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';

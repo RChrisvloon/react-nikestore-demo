@@ -3,7 +3,7 @@ import { uiActions } from '../../../store/uiSlice';
 import classes from './ProductGrid.module.css';
 import Product from './Product';
 import ProductModal from '../ProductModal/ProductModal';
-import DUMMY_PRODUCTS from '../../../store/DummyProducts';
+import DUMMY_PRODUCTS from '../../../store/DummyData/DummyProducts';
 import { useDispatch, useSelector } from 'react-redux';
 
 // View that shoes all products

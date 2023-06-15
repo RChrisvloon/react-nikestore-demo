@@ -2,10 +2,16 @@
 	/* min-width: 185px; */
 	max-width: 33.33333333%;
 	padding: 0 8px 0 8px;
+  transition: transform 0.5s;
 }
 
 .product-card:hover{
   cursor: pointer;
+  transform: translateY(-10px);
+}
+
+.product-card:hover > img {
+  opacity: 0.6;
 }
 
 /* Product info section */

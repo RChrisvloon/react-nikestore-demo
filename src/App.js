@@ -1,30 +1,63 @@
-import React, { Fragment, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import ResultsView from './components/Products/ProductView/ResultsView';
 import ResultsHeader from './components/Products/ProductView/ResultsHeader';
 import Cart from './components/Cart/Cart';
+import Notification from './components/UI/Notification/Notification';
+import { fetchCartData, sendCartData } from './store/cartData/cartActions';
+import { uiActions } from './store/uiSlice';
+
+let isInitial = true;
 
 function App() {
-	// Access cartdata from store
-	const showCart = useSelector((state) => state.ui.cartIsVisible);
-
-	// Filter menu visibility state
-	const [filterMenuisShown, setFilterMenuIsShown] = useState(true);
+	const dispatch = useDispatch();
+  
+  // Access data from store
+	const cartIsVisible = useSelector((state) => state.ui.cartIsVisible);
+	const cart = useSelector((state) => state.cart);
+	const notification = useSelector((state) => state.ui.notification);
+  const filterMenuIsShown = useSelector(state => state.ui.filterMenuIsShown);
 
 	// Toggle filter menu
 	const toggleFilterMenu = () => {
-		setFilterMenuIsShown((prevState) => !prevState);
+    dispatch(uiActions.toggleFilterMenu());
 	};
+
+	// Fetch cartdata from firebase
+	useEffect(() => {
+		dispatch(fetchCartData());
+	}, [dispatch]);
+
+	// Upload cartdata to firebase
+	useEffect(() => {
+    // Add check so react doesn't upload the empty cart on page-reload to firebase
+		if (isInitial) {
+			isInitial = false;
+			return;
+		}
+
+    // Cart data is only send to firebase when something is added/removed
+		if (cart.changed) {
+			dispatch(sendCartData(cart));
+		}
+	}, [cart, dispatch]);
 
 	return (
 		<Fragment>
-			{showCart && <Cart />}
+			{cartIsVisible && <Cart />}
+			{notification && (
+				<Notification
+					status={notification.status}
+					title={notification.title}
+					message={notification.message}
+				/>
+			)}
 			<Header />
 			<main>
-				<ResultsHeader toggleFilterMenu={toggleFilterMenu} showFilterMenu={filterMenuisShown} />
-				<ResultsView toggleFilterMenu={toggleFilterMenu} showFilterMenu={filterMenuisShown} />
+				<ResultsHeader toggleFilterMenu={toggleFilterMenu} showFilterMenu={filterMenuIsShown} />
+				<ResultsView toggleFilterMenu={toggleFilterMenu} showFilterMenu={filterMenuIsShown} />
 			</main>
 			<Footer />
 		</Fragment>

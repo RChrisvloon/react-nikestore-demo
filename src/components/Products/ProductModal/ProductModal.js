@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../../store/cartSlice';
+import { cartActions } from '../../../store/cartData/cartSlice';
 import useGetProduct from '../../../hooks/use-getProduct';
 import useDiscountCalc from '../../../hooks/use-discountCalc';
-import DUMMY_SIZES from '../../../store/DummySizes';
+import DUMMY_SIZES from '../../../store/DummyData/DummySizes';
 import Modal from '../../UI/Modal';
 import classes from './ProductModal.module.css';
 import SizePicker from './SizePicker';

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialCartState = {
 	items: [],
 	totalAmount: 0,
-	showCart: false,
+	changed: false,
 };
 
 const cartSlice = createSlice({
@@ -15,6 +15,7 @@ const cartSlice = createSlice({
 			let updatedTotalAmount;
 			updatedTotalAmount = state.totalAmount + (action.payload.newPrice || action.payload.price);
 
+			console.log(state.items);
 			// Check if item with same id & size exists in the cart
 			const existingItemIndex = state.items.findIndex(
 				(item) => item.id === action.payload.id && item.selectedSize === action.payload.selectedSize
@@ -42,7 +43,7 @@ const cartSlice = createSlice({
 
 			state.items = updatedItems;
 			state.totalAmount = updatedTotalAmount;
-			console.log('add ', state.items);
+			state.changed = true;
 		},
 		remove(state, action) {
 			// Check if item with same id & size exists in the cart
@@ -61,7 +62,7 @@ const cartSlice = createSlice({
 
 			state.items = updatedItems;
 			state.totalAmount = updatedTotalAmount;
-			console.log('remove ', state.items);
+			state.changed = true;
 		},
 		changeSize(state, action) {
 			const productId = action.payload.id;
@@ -123,7 +124,7 @@ const cartSlice = createSlice({
 			}
 
 			state.items = updatedItems;
-			console.log('change size ', state.items);
+			state.changed = true;
 		},
 		changeAmount(state, action) {
 			// Check if item exists in cart
@@ -160,20 +161,23 @@ const cartSlice = createSlice({
 
 			state.items = updatedItems;
 			state.totalAmount = updatedTotalAmount;
-			console.log('change amount ,', state.items);
+			state.changed = true;
 		},
 		clear(state, action) {
 			state.items = [];
 			state.totalAmount = 0;
+			state.changed = true;
 		},
 		checkout(state, action) {
 			// IMPROVE -- Will add API call for fake checkout later
 			state.items = [];
 			state.totalAmount = 0;
+			state.changed = true;
 		},
-		toggleCart(state) {
-			// Invert the showCart-value to toggle cartvisibility
-			state.showCart = !state.showCart;
+		replaceCart(state, action) {
+			// Set items in cart to fetched items OR to an empty array(default state)
+			state.items = action.payload.items || [];
+			state.totalAmount = action.payload.totalAmount || 0;
 		},
 	},
 });

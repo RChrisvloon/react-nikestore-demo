@@ -16,10 +16,13 @@ const CheckoutGroup = () => {
 
 	const cartState = useSelector((state) => state.cart);
 	const { items } = cartState;
+	let numberOfItems = 0;
 
-	const numberOfItems = items.reduce((cur, item) => {
-		return cur + item.amount;
-	}, 0);
+	if (items) {
+		numberOfItems = items.reduce((cur, item) => {
+			return cur + item.amount;
+		}, 0);
+	}
 
 	return (
 		<div className={classes.checkoutGroup}>
