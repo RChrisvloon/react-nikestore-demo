@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cartData/cartSlice';
 import { uiActions } from '../../store/uiSlice';
@@ -8,15 +8,26 @@ import classes from './Cart.module.css';
 import cross from '../../assets/cross.svg';
 
 const Cart = (props) => {
-  // State variables
+	// State variables
 	const dispatch = useDispatch();
 	const [isCheckingout, setIsCheckingOut] = useState(false);
 	const [checkoutIsSuccess, setCheckoutIsSuccess] = useState(false);
+	const [totalAmount, setTotalAmount] = useState(0);
 
 	// Accessing cartdata from store
 	const cartState = useSelector((state) => state.cart);
-	const totalAmount = cartState.totalAmount;
-	const hasItems = cartState.items.length > 0;
+	const itemsInCart = cartState.items;
+	const hasItems = itemsInCart.length > 0;
+
+	// Calculate totalAmount based on items in the cart
+	useEffect(() => {
+		setTotalAmount(
+			itemsInCart.reduce((total, item) => {
+				const itemAmount = item.price * item.amount;
+				return total + itemAmount;
+			}, 0)
+		);
+	}, [itemsInCart]);
 
 	// Handler for showing/hiding cart
 	const toggleCartHandler = () => {
@@ -90,7 +101,7 @@ const Cart = (props) => {
 				{hasItems && <div className={classes['cart-items_wrapper']}>{cartItemsList}</div>}
 				<div className={classes.amount_wrapper}>
 					<h2>Total Amount: </h2>
-					<span>${totalAmount.toFixed(2)}</span>
+					<span>${totalAmount}</span>
 				</div>
 				<div className={'order-buttons'}>
 					<button

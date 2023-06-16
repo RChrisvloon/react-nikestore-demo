@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialCartState = {
 	items: [],
-	totalAmount: 0,
 	changed: false,
 };
 
@@ -11,11 +10,6 @@ const cartSlice = createSlice({
 	initialState: initialCartState,
 	reducers: {
 		add(state, action) {
-			// Update the totalAmount & check if newPrice exists, otherwise use the original price
-			let updatedTotalAmount;
-			updatedTotalAmount = state.totalAmount + (action.payload.newPrice || action.payload.price);
-
-			console.log(state.items);
 			// Check if item with same id & size exists in the cart
 			const existingItemIndex = state.items.findIndex(
 				(item) => item.id === action.payload.id && item.selectedSize === action.payload.selectedSize
@@ -42,7 +36,6 @@ const cartSlice = createSlice({
 			}
 
 			state.items = updatedItems;
-			state.totalAmount = updatedTotalAmount;
 			state.changed = true;
 		},
 		remove(state, action) {
@@ -51,17 +44,11 @@ const cartSlice = createSlice({
 				(item) => item.id === action.payload.id && item.selectedSize === action.payload.size
 			);
 
-			// Update totalAmount & check if newPrice exists, otherwise use the original price
-			let updatedTotalAmount;
-			updatedTotalAmount =
-				state.totalAmount - (existingItem.newPrice || existingItem.price) * existingItem.amount;
-
 			// Filter out item to be removed
 			let updatedItems;
 			updatedItems = state.items.filter((item) => item !== existingItem);
 
 			state.items = updatedItems;
-			state.totalAmount = updatedTotalAmount;
 			state.changed = true;
 		},
 		changeSize(state, action) {
@@ -133,16 +120,6 @@ const cartSlice = createSlice({
 			);
 			const existingItem = state.items[existingItemIndex];
 
-			// Subtract the cost of (amount of old shoes * price of shoe) from the totalprice
-			const previousAmountMinusShoeCost =
-				state.totalAmount - (action.payload.newPrice || existingItem.price) * existingItem.amount;
-
-			// Update totalAmount by adding (new amount of shoe * price of shoe)
-			let updatedTotalAmount;
-			updatedTotalAmount =
-				previousAmountMinusShoeCost +
-				(action.payload.newPrice || existingItem.price) * action.payload.newAmount;
-
 			// Create new temporary variable for updatedItems
 			let updatedItems;
 
@@ -160,24 +137,20 @@ const cartSlice = createSlice({
 			updatedItems[existingItemIndex] = updatedItem;
 
 			state.items = updatedItems;
-			state.totalAmount = updatedTotalAmount;
 			state.changed = true;
 		},
-		clear(state, action) {
+		clear(state, ) {
 			state.items = [];
-			state.totalAmount = 0;
 			state.changed = true;
 		},
-		checkout(state, action) {
+		checkout(state, ) {
 			// IMPROVE -- Will add API call for fake checkout later
 			state.items = [];
-			state.totalAmount = 0;
 			state.changed = true;
 		},
 		replaceCart(state, action) {
 			// Set items in cart to fetched items OR to an empty array(default state)
 			state.items = action.payload.items || [];
-			state.totalAmount = action.payload.totalAmount || 0;
 		},
 	},
 });

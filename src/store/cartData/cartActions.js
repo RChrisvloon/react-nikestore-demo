@@ -19,7 +19,7 @@ export const sendCartData = (cart) => {
 				'https://react-http-b7d1c-default-rtdb.europe-west1.firebasedatabase.app/cart.json',
 				{
 					method: 'PUT',
-					body: JSON.stringify({ items: cart.items, totalAmount: cart.totalAmount }),
+					body: JSON.stringify({ items: cart.items }),
 				}
 			);
 
@@ -64,6 +64,8 @@ export const fetchCartData = () => {
 			}
 
 			const data = await response.json();
+
+      // IMPROVE -- SANITIZE DATA TO CHECK IF EVERYTHING IS CORRECT AND AVAILABLE
 
 			return data;
 		};
