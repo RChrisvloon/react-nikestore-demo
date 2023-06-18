@@ -1,7 +1,5 @@
-import React, { Fragment } from 'react';
+// Asset imports
 import classes from './Footer.module.css';
-
-// Import svg file(s)
 
 const Footer = (props) => {
 	return (

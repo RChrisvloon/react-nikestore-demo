@@ -1,4 +1,7 @@
+// React (Redux) imports
 import { Fragment, useState } from 'react';
+
+// Asset imports
 import classes from './ImageComponent.module.css';
 import Spinner from '../Spinner/Spinner';
 

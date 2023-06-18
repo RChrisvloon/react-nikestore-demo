@@ -1,5 +1,8 @@
+// React (Redux) imports
 import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+
+// Asset imports
 import classes from './Modal.module.css';
 
 // Backdrop component that represents the background overlay of the modal

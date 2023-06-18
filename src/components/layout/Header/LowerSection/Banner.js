@@ -1,10 +1,13 @@
+// React (Redux) imports
 import { useState, useEffect, useCallback } from 'react';
-import classes from './Banner.module.css';
+
+// Component imports
+import Slide from './Slide';
 
 // Import svg file(s)
-import leftArrow from '../../../assets/left-arrow.svg';
-import rightArrow from '../../../assets/right-arrow.svg';
-import Slide from './Slide';
+import classes from './Banner.module.css';
+import leftArrow from '../../../../assets/left-arrow.svg';
+import rightArrow from '../../../../assets/right-arrow.svg';
 
 // Default Slides for the banner-component
 const SLIDES = [

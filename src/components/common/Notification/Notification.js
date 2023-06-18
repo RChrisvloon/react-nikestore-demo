@@ -1,5 +1,7 @@
+// Asset imports
 import classes from './Notification.module.css';
 
+// Global component for displaying status-messages
 const Notification = (props) => {
   let notificationClasses = '';
 

@@ -1,7 +1,7 @@
 // Custom hook for calculating discounted price
 const useDiscountCalc = (price, discount) => {
   // If discount is 0 or not provided, return false
-  if (discount === 0 || !discount) {
+  if (discount <= 0 || !discount) {
     return false;
   }
 

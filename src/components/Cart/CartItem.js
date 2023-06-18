@@ -1,15 +1,18 @@
+// React (Redux) imports
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { cartSliceActions } from '../../store/slices/cartSlice';
 import useGetProduct from '../../hooks/use-getProduct';
 import useDiscountCalc from '../../hooks/use-discountCalc';
-import ImageComponent from '../UI/ImageComponent/ImageComponent';
-import classes from './CartItem.module.css';
-import DUMMY_SIZES from '../../store/DummyData/DummySizes';
+import DUMMY_SIZES from '../../data/DummySizes';
 
-// Import svg file(s)
+// Component imports
+import ImageComponent from '../common/ImageComponent/ImageComponent';
+
+// Asset imports
+import classes from './CartItem.module.css';
 import heart from '../../assets/heart.svg';
 import trash from '../../assets/trash.svg';
-import { cartActions } from '../../store/cartData/cartSlice';
 
 const CartItem = (props) => {
 	const dispatch = useDispatch();
@@ -62,7 +65,7 @@ const CartItem = (props) => {
 
 		// Change size by calling changeSize store-method
 		dispatch(
-			cartActions.changeSize({ id: productId, oldSize: oldSize, newSize: newSize, amount: amount })
+			cartSliceActions.changeSize({ id: productId, oldSize: oldSize, newSize: newSize, amount: amount })
 		);
 	};
 
@@ -72,7 +75,7 @@ const CartItem = (props) => {
 		const newAmount = +event.target.value;
 
 		dispatch(
-			cartActions.changeAmount({
+			cartSliceActions.changeAmount({
 				id: product.id,
 				shoeSize: shoeSize,
 				newPrice: newPrice,

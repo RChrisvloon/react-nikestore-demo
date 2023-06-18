@@ -18,8 +18,9 @@ const cartSlice = createSlice({
 
 			let updatedItems;
 
+			// Item is already in the cart, update the amount
 			if (existingItem) {
-				// Item is already in the cart, update the amount
+				// Item has reached the maximum amount
 				if (existingItem.amount >= 10) {
 					window.alert('Maximum amount(10) of this item has been reached! ');
 					return;
@@ -84,12 +85,12 @@ const cartSlice = createSlice({
 					amount: newShoe.amount + amountOfOldShoe,
 				};
 
-				// If max amount of this item will be reached
+				// Max amount of this item will be reached
 				if (updatedItem.amount > 10) {
 					// Give user option to confirm this action
 					if (
 						window.confirm(
-							'This action will exceed the maximum amount(10) of this item. The amount will be set to 10. Are you sure?'
+							'This action would exceed the maximum amount(10) of this item. The amount will be set to 10 instead. Are you sure?'
 						)
 					) {
 						updatedItem.amount = 10;
@@ -97,7 +98,6 @@ const cartSlice = createSlice({
 						return;
 					}
 				}
-
 				updatedItems[newShoeIndex] = updatedItem;
 			} else {
 				// Item is not in the cart, add it to the items array
@@ -128,6 +128,7 @@ const cartSlice = createSlice({
 				amount: action.payload.newAmount,
 			};
 
+      // Check if amount is valid
 			if (updatedItem.amount < 1 || updatedItem.amount > 10) {
 				window.alert('Selected amount(1-10) is invalid.');
 				return;
@@ -139,21 +140,21 @@ const cartSlice = createSlice({
 			state.items = updatedItems;
 			state.changed = true;
 		},
-		clear(state, ) {
+		clear(state) {
 			state.items = [];
 			state.changed = true;
 		},
-		checkout(state, ) {
-			// IMPROVE -- Will add API call for fake checkout later
+		checkout(state) {
+			// TODO: -- Will add API call for fake checkout later
 			state.items = [];
 			state.changed = true;
 		},
 		replaceCart(state, action) {
-			// Set items in cart to fetched items OR to an empty array(default state)
+			// Set items in cart to fetched items OR to an empty array
 			state.items = action.payload.items || [];
 		},
 	},
 });
 
-export const cartActions = cartSlice.actions;
+export const cartSliceActions = cartSlice.actions;
 export default cartSlice.reducer;

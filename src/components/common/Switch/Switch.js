@@ -1,4 +1,4 @@
-import React from 'react';
+// Asset imports
 import classes from './Switch.module.css';
 
 const Switch = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+// Asset imports
 import classes from './Slide.module.css';
 
 // Text that's displayed in Banner-Component

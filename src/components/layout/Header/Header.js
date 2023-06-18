@@ -1,16 +1,18 @@
-import React from 'react';
-import classes from './Header.module.css';
-import TopHeader from './TopHeader';
-import nike from '../../assets/nike.svg';
-import CheckoutGroup from './CheckoutGroup';
-import CategoryMenu from './CategorySection/CategoryMenu';
-import Banner from '../UI/Banner/Banner';
+// Component imports
+import TopBar from './TopSection/TopBar';
+import CheckoutGroup from './MiddleSection/CheckoutGroup';
+import CategoryMenu from './MiddleSection/Categories/CategoryMenu';
+import Banner from './LowerSection/Banner';
 
-// Header consists of 3 parts: Topheader, header(img, CategoryMenu, CheckoutGroup) & Banner
+// Asset imports
+import classes from './Header.module.css';
+import nike from '../../../assets/nike.svg';
+
+// Header consists of 3 parts: Top section(TopBar), Middle section(Logo, categories, favourite/basket-icons) and Lower section(Banner)
 const Header = () => {
 	return (
 		<div className={classes.container}>
-			<TopHeader />
+			<TopBar />
 			<header className={classes.header}>
 				<div className={classes['header-wrapper']}>
 					<a className={classes['app-logo_wrapper']} href="https://www.chrisvanloon.nl/">

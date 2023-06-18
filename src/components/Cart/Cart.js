@@ -1,9 +1,14 @@
+// React (Redux) imports
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../store/cartData/cartSlice';
-import { uiActions } from '../../store/uiSlice';
-import Modal from '../UI/Modal';
+import { cartSliceActions } from '../../store/slices/cartSlice';
+import { uiSliceActions } from '../../store/slices/uiSlice';
+
+// Component imports
+import Modal from '../common/Modal/Modal';
 import CartItem from './CartItem';
+
+// Asset imports
 import classes from './Cart.module.css';
 import cross from '../../assets/cross.svg';
 
@@ -14,12 +19,12 @@ const Cart = (props) => {
 	const [checkoutIsSuccess, setCheckoutIsSuccess] = useState(false);
 	const [totalAmount, setTotalAmount] = useState(0);
 
-	// Accessing cartdata from store
+	// Accessing cart data from store
 	const cartState = useSelector((state) => state.cart);
 	const itemsInCart = cartState.items;
 	const hasItems = itemsInCart.length > 0;
 
-	// Calculate totalAmount based on items in the cart
+	// Calculate total amount based on items in the cart
 	useEffect(() => {
 		setTotalAmount(
 			itemsInCart.reduce((total, item) => {
@@ -31,12 +36,12 @@ const Cart = (props) => {
 
 	// Handler for showing/hiding cart
 	const toggleCartHandler = () => {
-		dispatch(uiActions.toggleCart());
+		dispatch(uiSliceActions.toggleCart());
 	};
 
 	// Handler for removing a cart item
 	const cartItemRemoveHandler = (id, size) => {
-		dispatch(cartActions.remove({ id: id, size: size }));
+		dispatch(cartSliceActions.remove({ id: id, size: size }));
 	};
 
 	const checkoutHandler = () => {
@@ -50,7 +55,7 @@ const Cart = (props) => {
 		setCheckoutIsSuccess(false);
 
 		setTimeout(() => {
-			dispatch(cartActions.checkout());
+			dispatch(cartSliceActions.checkout());
 			setIsCheckingOut(false);
 		}, 1000);
 
@@ -60,7 +65,7 @@ const Cart = (props) => {
 
 		// Close the modal after a delay
 		setTimeout(() => {
-			dispatch(cartActions.toggleCart());
+			dispatch(uiSliceActions.toggleCart());
 		}, 3000);
 	};
 

@@ -1,4 +1,4 @@
-import DUMMY_PRODUCTS from '../store/DummyData/DummyProducts';
+import DUMMY_PRODUCTS from '../data/DummyProducts';
 
 const useGetProduct = (productId) => {
   // Find product based on id

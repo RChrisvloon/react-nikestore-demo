@@ -21,7 +21,6 @@
   object-position: center;
   overflow: hidden;
 }
-/*****/
 
 /* Cart Image styling */
 .cart-item_image{
@@ -29,7 +28,6 @@
   margin-right: 1rem;
   height: 150px;
 }
-/*****/
 
 /* Image styling */
 .product-card_img {

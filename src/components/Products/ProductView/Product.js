@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Product.module.css';
 import useDiscountCalc from '../../../hooks/use-discountCalc';
-import ImageComponent from '../../UI/ImageComponent/ImageComponent';
+import ImageComponent from '../../common/ImageComponent/ImageComponent';
 
 const Product = (props) => {
 	// Call custom-hook for calculating discounted price

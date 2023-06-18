@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../../store/cartData/cartSlice';
+import { cartSliceActions } from '../../../store/slices/cartSlice';
 import useGetProduct from '../../../hooks/use-getProduct';
 import useDiscountCalc from '../../../hooks/use-discountCalc';
-import DUMMY_SIZES from '../../../store/DummyData/DummySizes';
-import Modal from '../../UI/Modal';
+import DUMMY_SIZES from '../../../data/DummySizes';
+import Modal from '../../common/Modal/Modal';
 import classes from './ProductModal.module.css';
 import SizePicker from './SizePicker';
-import ImageComponent from '../../UI/ImageComponent/ImageComponent';
+import ImageComponent from '../../common/ImageComponent/ImageComponent';
 import cross from '../../../assets/cross.svg';
 import heart from '../../../assets/heart.svg';
-import { uiActions } from '../../../store/uiSlice';
 
 const ProductModal = (props) => {
 	const dispatch = useDispatch();
@@ -78,7 +77,7 @@ const ProductModal = (props) => {
 		// Add item to the cart (With artificial delay)
 		setTimeout(() => {
 			dispatch(
-				cartActions.add({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 })
+				cartSliceActions.add({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 })
 			);
 			setIsAddingToBag(false);
 		}, 1000);

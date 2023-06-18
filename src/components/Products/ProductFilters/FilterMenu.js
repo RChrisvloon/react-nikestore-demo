@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import classes from './FilterMenu.module.css';
-import Switch from '../../UI/Switch/Switch';
+import Switch from '../../common/Switch/Switch';
 import FilterOptionSection from './FilterOptionSection';
 import FilterOption from './FilterOption';
 

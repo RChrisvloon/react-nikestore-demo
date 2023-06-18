@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
-import classes from './CategoryMenu.module.css';
-import CATEGORY_BUTTONS from '../../../store/DummyData/CategoryButtonsData';
+// React (Redux) imports
+import { useState } from 'react';
+import CATEGORY_BUTTONS from '../../../../../data/CategoryButtonsData';
+
+// Component imports
 import CategoryMenuContent from './CategoryMenuContent';
 
+// Asset imports
+import classes from './CategoryMenu.module.css';
+
+// Section that shows possible categories of items (Men, Women, Accessoires etc.)
 const CategoryMenu = (props) => {
 	const [activeDropdown, setActiveDropdown] = useState(null);
 
