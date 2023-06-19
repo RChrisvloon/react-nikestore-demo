@@ -28,7 +28,7 @@ const Cart = (props) => {
 	useEffect(() => {
 		setTotalAmount(
 			itemsInCart.reduce((total, item) => {
-				const itemAmount = item.price * item.amount;
+				const itemAmount = (item.discountedPrice || item.price) * item.amount;
 				return total + itemAmount;
 			}, 0)
 		);
@@ -106,7 +106,7 @@ const Cart = (props) => {
 				{hasItems && <div className={classes['cart-items_wrapper']}>{cartItemsList}</div>}
 				<div className={classes.amount_wrapper}>
 					<h2>Total Amount: </h2>
-					<span>${totalAmount}</span>
+					<span>${totalAmount.toFixed(2)}</span>
 				</div>
 				<div className={'order-buttons'}>
 					<button

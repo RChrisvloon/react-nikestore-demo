@@ -30,6 +30,10 @@ const uiSlice = createSlice({
 				message: action.payload.message,
 			};
 		},
+    clearNotification(state) {
+      console.log('Kanker');
+      state.notification = null;
+    }
 	},
 });
 

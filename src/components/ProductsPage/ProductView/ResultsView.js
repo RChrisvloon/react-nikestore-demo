@@ -1,5 +1,8 @@
+// Component imports
 import ProductGrid from './ProductGrid';
 import FilterMenu from '../ProductFilters/FilterMenu';
+
+// Asset imports
 import classes from './ResultsView.module.css';
 
 const ResultsView = (props) => {

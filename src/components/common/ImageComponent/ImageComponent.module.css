@@ -1,46 +1,59 @@
+.whiteCloseBtn {
+  fill: white;
+  cursor: pointer;
+}
+
 /* ProductModal styling*/
 .thumbnail_img {
-  margin-right: 9px;
+	margin-right: 9px;
 	aspect-ratio: 1/1;
-  object-fit: cover;
-  object-position: center;
+	object-fit: cover;
+	object-position: center;
 	width: 60px;
 	border-radius: 4px;
-  transition: 0.2s;
+	transition: 0.2s;
 }
 
 .thumbnail_img:hover {
-  filter: brightness(0.9);
-  transition: 0.2s;
+	filter: brightness(0.9);
+	transition: 0.2s;
 }
 
-.modal-product_image {
-	width: 100%;
-  max-height: 450px;
-  object-fit: cover;
-  object-position: center;
-  overflow: hidden;
+.product_image {
+	height: 450px;
+  width: 100%;
+  aspect-ratio: 1/1;
+	object-fit: cover;
+	object-position: center;
+	overflow: hidden;
 }
 
 /* Cart Image styling */
-.cart-item_image{
-  width: 150px;
-  margin-right: 1rem;
-  height: 150px;
+.cart-item_image {
+	width: 150px;
+	margin-right: 1rem;
+	height: 150px;
 }
 
 /* Image styling */
 .product-card_img {
-  max-width: 600px;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  object-position: center;
-  margin-bottom: 1rem;
-  transition: opacity 0.5s;
+	max-width: 600px;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	object-position: center;
+	margin-bottom: 1rem;
+	transition: opacity 0.5s;
 }
 
-.product-card:hover > img{
-  opacity: 0.5;
-  transition: 0.5s;
+.product-card:hover > img {
+	opacity: 0.5;
+	transition: 0.5s;
+}
+
+/* Home Page styling */
+.intro-section_image {
+	width: 100%;
+	margin-bottom: 3rem;
+	margin-top: -15px;
 }

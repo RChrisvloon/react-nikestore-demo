@@ -46,17 +46,3 @@
   gap: 1rem;
   max-height: 450px;
 }
-
-.thumbnail-column{
-  display: flex;
-  min-width: 60px;
-  flex-direction: column;
-  gap: 0.5rem;
-  /* max-height: 450px; */
-  overflow-y: scroll;
-}
-
-/* Hide scrollbar for thumbnailcolumn*/
-.thumbnail-column::-webkit-scrollbar{
-  display: none;
-}

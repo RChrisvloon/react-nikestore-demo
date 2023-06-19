@@ -1,8 +1,13 @@
-import React, { Fragment } from 'react';
-import classes from './FilterMenu.module.css';
+// React (Redux) imports
+import { Fragment } from 'react';
+
+// Component imports
 import Switch from '../../common/Switch/Switch';
 import FilterOptionSection from './FilterOptionSection';
 import FilterOption from './FilterOption';
+
+// Asset imports
+import classes from './FilterMenu.module.css';
 
 // FilterMenu shown on left-side of ProductGrid
 const FilterMenu = (props) => {

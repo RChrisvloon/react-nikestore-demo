@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+// React (Redux) imports
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { cartSliceActions } from '../../../store/slices/cartSlice';
 import useGetProduct from '../../../hooks/use-getProduct';
-import useDiscountCalc from '../../../hooks/use-discountCalc';
 import DUMMY_SIZES from '../../../data/DummySizes';
+
+// Component imports
 import Modal from '../../common/Modal/Modal';
-import classes from './ProductModal.module.css';
 import SizePicker from './SizePicker';
-import ImageComponent from '../../common/ImageComponent/ImageComponent';
+
+// Asset imports
+import classes from './ProductModal.module.css';
 import cross from '../../../assets/cross.svg';
 import heart from '../../../assets/heart.svg';
+import ProductImageSection from '../../common/Product/ProductImageSection';
 
 const ProductModal = (props) => {
 	const dispatch = useDispatch();
@@ -18,39 +22,9 @@ const ProductModal = (props) => {
 	const [selectedSize, setSelectedSize] = useState(false);
 	const [isAddingToBag, setIsAddingToBag] = useState(false);
 	const [addToCartSuccess, setAddToCartSuccess] = useState(false);
-	const [displayedImage, setDisplayedImage] = useState(false);
 
-	// Fetch product data
+	// Fetch product data & Calculate discounted price
 	const product = useGetProduct(props.productId);
-
-	// Change the 'active' image on hover
-	const imageHoverHandler = (event) => {
-		// Get src of image being hovered over
-		const newImgSrc = event.target.src;
-
-		// Set active image to new image
-		setDisplayedImage(newImgSrc);
-	};
-
-	const resetImageHandler = () => {
-		setDisplayedImage(false);
-	};
-
-	// Generate sub-images content
-	const subImagesContent = product.sub_images.map((img, key) => {
-		return (
-			<ImageComponent
-				key={key}
-				className={'thumbnail_img'}
-				src={img}
-				alt={'Thumbnail owned by https://www.nike.com/'}
-				onMouseOver={imageHoverHandler}
-			/>
-		);
-	});
-
-	// Calculate discounted price
-	const newPrice = useDiscountCalc(product.price, product.discount);
 
 	// Handler for shoe size selection
 	const handleSizeSelect = (size) => {
@@ -69,15 +43,22 @@ const ProductModal = (props) => {
 			return;
 		}
 
-		// IMPROVE -- Add try catch to handle failed added items
-		// IMPROVE -- When api-based, request status can be used to display userfeedback
+		// TODO -- Add try catch to handle failed added items
+		// TODO -- When api-based, request status can be used to display userfeedback
 		setIsAddingToBag(true);
 		setAddToCartSuccess(false);
 
 		// Add item to the cart (With artificial delay)
 		setTimeout(() => {
 			dispatch(
-				cartSliceActions.add({ id: product.id, price: product.price, newPrice, selectedSize, amount: 1 })
+				cartSliceActions.add({
+					id: product.id,
+					price: product.price,
+					discountedPrice: product.discountedPrice,
+          discountPercentage: product.discountPercentage,
+					selectedSize,
+					amount: 1,
+				})
 			);
 			setIsAddingToBag(false);
 		}, 1000);
@@ -110,20 +91,13 @@ const ProductModal = (props) => {
 				<div className={classes['price-section']}>
 					<h4>Order this product for only:</h4>
 					<p>
-						{newPrice && `$${newPrice}`}
-						<span className={`${newPrice && 'discount_line'}`}>${product.price}</span>
+						{product.discountedPrice && `$${product.discountedPrice}`}
+						<span className={`${product.discountedPrice && 'discount_line'}`}>${product.price}</span>
 					</p>
-					{newPrice && <p className={'discount_styling'}>{product.discount}% off</p>}
+					{product.discountedPrice && <p className={'discount_styling'}>{product.discountPercentage}% off</p>}
 				</div>
 				<SizePicker onSizeSelect={handleSizeSelect} />
-				<div className={classes['modal-images_wrapper']} onMouseLeave={resetImageHandler}>
-					<div className={classes['thumbnail-column']}>{subImagesContent}</div>
-					<ImageComponent
-						src={!displayedImage ? product.img_url : displayedImage}
-						className={'modal-product_image'}
-						alt={'Copyright by https://www.nike.com/'}
-					/>
-				</div>
+        <ProductImageSection product={product} />
 				<div className={'order-buttons'}>
 					<button
 						className={'button-order button-order_black'}

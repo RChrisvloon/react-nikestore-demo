@@ -1,11 +1,14 @@
-import React from 'react';
-import classes from './Product.module.css';
-import useDiscountCalc from '../../../hooks/use-discountCalc';
+// React (Redux) imports
+import { useNavigate } from 'react-router-dom';
+
+// Component imports
 import ImageComponent from '../../common/ImageComponent/ImageComponent';
 
+// Asset imports
+import classes from './Product.module.css';
+
 const Product = (props) => {
-	// Call custom-hook for calculating discounted price
-	const newPrice = useDiscountCalc(props.price, props.discount);
+	const navigate = useNavigate();
 
 	const openModal = () => {
 		// Check if clicked productId exists
@@ -14,8 +17,9 @@ const Product = (props) => {
 			return;
 		}
 
-    // Open the modal window
-		props.openModal(props.id);
+		// Open the modal window
+		// props.openModal(props.id);
+		navigate('/products/' + props.id);
 	};
 
 	return (
@@ -26,14 +30,16 @@ const Product = (props) => {
 				alt={'Copyright by https://www.nike.com/'}
 			/>
 			<div className={classes['product-card_info']}>
-				<h3 className={classes['product-card_title']}>{props.id}. {props.title}</h3>
+				<h3 className={classes['product-card_title']}>
+					{props.id}. {props.title}
+				</h3>
 				<h4 className={classes['product-card_subtitle']}>{props.description}</h4>
 				<div className={classes['product-card_priceinfo']}>
 					<p>
-						{newPrice && `$${newPrice}`}
-						<span className={`${newPrice && 'discount_line'}`}>${props.price}</span>
+						{props.discountedPrice && `$${props.discountedPrice}`}
+						<span className={`${props.discountedPrice && 'discount_line'}`}>${props.price}</span>
 					</p>
-					{newPrice && <p className={'discount_styling'}>{props.discount}% off</p>}
+					{props.discountedPrice && <p className={'discount_styling'}>{props.discountPercentage}% off</p>}
 				</div>
 			</div>
 		</div>

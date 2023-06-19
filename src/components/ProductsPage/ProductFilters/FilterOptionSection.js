@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+// React (Redux) imports
+import { useState } from 'react';
+
+// Asset imports
 import classes from './FilterOptionSection.module.css';
 import downArrow from '../../../assets/down-arrow.svg';
 

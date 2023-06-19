@@ -2,21 +2,22 @@
 const DUMMY_PRODUCTS = [
 	{
     id: 1,
-		title: 'Nike Pegasus 40',
-		description: "Men's Road Running Shoes",
-		price: 129.99,
+		title: "Nike Air Force 1'07",
+		description: "Women's Shoes",
+		price: 119.99,
 		img_url:
-			'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/1c887b49-b5fe-4c6a-97b1-9a30f7cd8e29/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/2fc724c9-79bd-4ab5-8d38-4e5dd794e689/air-force-1-07-damesschoen-QxRXZV.png',
 		sub_images: [
-			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/acf64239-0b0c-4298-9f7c-f8c01ef95c85/pegasus-40-mens-road-running-shoes-h3bxQl.png',
-			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5ef19b8a-328c-4343-958c-d83c1b732f2c/pegasus-40-mens-road-running-shoes-h3bxQl.png',
-			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/422dc1e8-4345-4f23-b94a-79374f6c3954/pegasus-40-mens-road-running-shoes-h3bxQl.png',
-			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/65ac2d02-9813-46f5-97a2-9923207ddd11/pegasus-40-mens-road-running-shoes-h3bxQl.png',
-			'https://static.nike.com/a/images/t_default/02f2af27-7419-44f2-a52e-13fc35bc4f7e/pegasus-40-mens-road-running-shoes-h3bxQl.png',
-			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/8d2a1c76-9bb8-4b3d-9b70-4d19bcbcf11e/pegasus-40-mens-road-running-shoes-h3bxQl.png',
-			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ce8a3533-3b43-4769-ac2e-4a00ebf36511/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f2989221-782d-452d-becd-b969e677a241/air-force-1-07-damesschoen-QxRXZV.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a606cb8e-205f-4a7a-9b95-23810ea11ff9/air-force-1-07-damesschoen-QxRXZV.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/bdb17107-fcff-4287-b42c-814e60ad6185/air-force-1-07-damesschoen-QxRXZV.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/50bb3683-db6c-4ab2-aae7-f74a27e0e871/air-force-1-07-damesschoen-QxRXZV.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/91429185-f13a-418b-98cc-97248926591e/air-force-1-07-damesschoen-QxRXZV.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/803eb59f-b82e-467f-926b-3a9cba4be3da/air-force-1-07-damesschoen-QxRXZV.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/80f8953b-f039-4c33-9fb3-9d02241d6ad9/air-force-1-07-damesschoen-QxRXZV.png',
 		],
-		discount: 25,
+    discountedPrice: null,
+    discountPercentage: null
 	},
 	{
     id: 2,
@@ -34,6 +35,8 @@ const DUMMY_PRODUCTS = [
 			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/deb84a7a-d668-44f9-91dc-205222a622dd/invincible-3-mens-road-running-shoes-Xrd0px.png',
 			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/4dc089a7-f603-41da-9a54-7259c102ded6/invincible-3-mens-road-running-shoes-Xrd0px.png',
 		],
+    discountedPrice: null,
+    discountPercentage: null
 	},
 	{
     id: 3,
@@ -51,6 +54,8 @@ const DUMMY_PRODUCTS = [
 			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6a92593c-95c9-4297-8518-2ca8cbe6a9b5/air-max-pulse-mens-shoes-ShS3tL.png',
 			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/708a8508-d960-4065-9e24-ffab83328e78/air-max-pulse-mens-shoes-ShS3tL.png',
 		],
+    discountedPrice: null,
+    discountPercentage: null
 	},
 	{
     id: 4,
@@ -68,7 +73,8 @@ const DUMMY_PRODUCTS = [
 			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f14f8996-99a7-45e1-9c43-258ab82f27ac/air-zoom-flight-95-mens-shoes-zc42bP.png',
 			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1f32cee0-c3a7-4d1a-888d-6eda69bf43af/air-zoom-flight-95-mens-shoes-zc42bP.png',
 		],
-		discount: 20,
+    discountedPrice: 127.99,
+    discountPercentage: 20
 	},
 	{
     id: 5,
@@ -86,7 +92,27 @@ const DUMMY_PRODUCTS = [
       'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/120a31b0-efa7-41c7-9a84-87b1e56ab9c3/air-force-1-07-mens-shoes-jBrhbr.png',
       'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1c1e5f55-99c2-4522-b398-2352e01ba566/air-force-1-07-mens-shoes-jBrhbr.png',
     ],
-		discount: 15,
+    discountedPrice: 108.79,
+    discountPercentage: 15
+	},
+  {
+    id: 6,
+		title: 'Nike Pegasus 40',
+		description: "Men's Road Running Shoes",
+		price: 129.99,
+		img_url:
+			'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/1c887b49-b5fe-4c6a-97b1-9a30f7cd8e29/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+		sub_images: [
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/acf64239-0b0c-4298-9f7c-f8c01ef95c85/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5ef19b8a-328c-4343-958c-d83c1b732f2c/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/422dc1e8-4345-4f23-b94a-79374f6c3954/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/65ac2d02-9813-46f5-97a2-9923207ddd11/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_default/02f2af27-7419-44f2-a52e-13fc35bc4f7e/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/8d2a1c76-9bb8-4b3d-9b70-4d19bcbcf11e/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+			'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ce8a3533-3b43-4769-ac2e-4a00ebf36511/pegasus-40-mens-road-running-shoes-h3bxQl.png',
+		],
+    discountedPrice: 97.49,
+    discountPercentage: 25
 	},
 ];
 

@@ -104,7 +104,8 @@ const cartSlice = createSlice({
 				updatedItems = updatedItems.concat({
 					id: productId,
 					price: oldShoe.price,
-					newPrice: oldShoe.newPrice,
+					discountedPrice: oldShoe.discountedPrice,
+          discountPercentage: oldShoe.discountPercentage,
 					selectedSize: newSize,
 					amount: amountOfOldShoe,
 				});

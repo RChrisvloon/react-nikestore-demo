@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+// React (Redux) imports
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { uiSliceActions } from '../../../store/slices/uiSlice';
-import classes from './ProductGrid.module.css';
+import DUMMY_PRODUCTS from '../../../data/DummyProducts';
+
+// Component imports
 import Product from './Product';
 import ProductModal from '../ProductModal/ProductModal';
-import DUMMY_PRODUCTS from '../../../data/DummyProducts';
-import { useDispatch, useSelector } from 'react-redux';
+
+// Asset imports
+import classes from './ProductGrid.module.css';
 
 // View that shoes all products
 const ProductGrid = (props) => {
@@ -36,9 +41,10 @@ const ProductGrid = (props) => {
 				title={item.title}
 				description={item.description}
 				price={item.price}
+        discountedPrice={item.discountedPrice}
+        discountPercentage={item.discountPercentage}
 				image={item.img_url}
 				sub_images={item.sub_images}
-				discount={item.discount}
 				openModal={openModal}
 			/>
 		);

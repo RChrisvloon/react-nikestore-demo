@@ -1,9 +1,8 @@
 // React (Redux) imports
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartSliceActions } from '../../store/slices/cartSlice';
 import useGetProduct from '../../hooks/use-getProduct';
-import useDiscountCalc from '../../hooks/use-discountCalc';
 import DUMMY_SIZES from '../../data/DummySizes';
 
 // Component imports
@@ -21,7 +20,6 @@ const CartItem = (props) => {
 
 	// Get product and discounted price using custom-hooks
 	const product = useGetProduct(props.id);
-	const newPrice = useDiscountCalc(product.price, product.discount);
 
 	// Update the local state when the amount prop changes
 	useEffect(() => {
@@ -65,7 +63,12 @@ const CartItem = (props) => {
 
 		// Change size by calling changeSize store-method
 		dispatch(
-			cartSliceActions.changeSize({ id: productId, oldSize: oldSize, newSize: newSize, amount: amount })
+			cartSliceActions.changeSize({
+				id: productId,
+				oldSize: oldSize,
+				newSize: newSize,
+				amount: amount,
+			})
 		);
 	};
 
@@ -78,11 +81,12 @@ const CartItem = (props) => {
 			cartSliceActions.changeAmount({
 				id: product.id,
 				shoeSize: shoeSize,
-				newPrice: newPrice,
+				price: product.price,
+				discountedPrice: product.discountedPrice,
+				discountPercentage: product.discountPercentage,
 				newAmount: newAmount,
 			})
 		);
-		console.log();
 	};
 
 	return (
@@ -101,8 +105,8 @@ const CartItem = (props) => {
 							{product.id}. {product.title}
 						</h3>
 						<div>
-							{newPrice && `$${newPrice}`}
-							<span className={`${newPrice && 'discount_line'}`}>${product.price}</span>
+							{product.discountedPrice && `$${product.discountedPrice}`}
+							<span className={`${product.discountedPrice && 'discount_line'}`}>${product.price}</span>
 						</div>
 					</div>
 					<p className={classes['cart-item-information_subtext']}>{product.description}</p>

@@ -7,6 +7,7 @@ import Banner from './LowerSection/Banner';
 // Asset imports
 import classes from './Header.module.css';
 import nike from '../../../assets/nike.svg';
+import { Link } from 'react-router-dom';
 
 // Header consists of 3 parts: Top section(TopBar), Middle section(Logo, categories, favourite/basket-icons) and Lower section(Banner)
 const Header = () => {
@@ -15,9 +16,9 @@ const Header = () => {
 			<TopBar />
 			<header className={classes.header}>
 				<div className={classes['header-wrapper']}>
-					<a className={classes['app-logo_wrapper']} href="https://www.chrisvanloon.nl/">
+					<Link to={'/'} className={classes['app-logo_wrapper']}>
 						<img className={classes['app-logo']} src={nike} alt="Copyright by https://www.nike.com/" />
-					</a>
+					</Link>
 					<CategoryMenu />
 					<CheckoutGroup />
 				</div>

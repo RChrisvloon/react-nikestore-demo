@@ -1,5 +1,6 @@
 // React (Redux) imports
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CATEGORY_BUTTONS from '../../../../../data/CategoryButtonsData';
 
 // Component imports
@@ -31,7 +32,7 @@ const CategoryMenu = (props) => {
 				onMouseEnter={() => handleMouseEnter(index)}
 				onMouseLeave={handleMouseLeave}
 			>
-				<button>{categoryButton.name}</button>
+				<Link to={'/products'}><button>{categoryButton.name}</button></Link>
 				{isDropdownActive && (
 					<div className={classes.dropdownContent}>
 						<CategoryMenuContent currentCategory={categoryButton} />

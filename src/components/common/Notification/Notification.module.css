@@ -26,3 +26,10 @@
 .warning {
   background-color: #ffffd7;
 }
+
+.rightSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}

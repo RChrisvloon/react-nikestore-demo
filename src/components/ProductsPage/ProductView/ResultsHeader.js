@@ -1,8 +1,8 @@
-import React from 'react';
-import classes from './ResultsHeader.module.css';
+// React (Redux) imports
 import DUMMY_PRODUCTS from '../../../data/DummyProducts';
 
-// Import svg file(s)
+// Asset imports
+import classes from './ResultsHeader.module.css';
 import downArrow from '../../../assets/down-arrow.svg';
 import settings from '../../../assets/settings.svg';
 
