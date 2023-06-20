@@ -33,6 +33,7 @@
 	width: 150px;
 	margin-right: 1rem;
 	height: 150px;
+  object-fit: cover;
 }
 
 /* Image styling */
@@ -56,4 +57,24 @@
 	width: 100%;
 	margin-bottom: 3rem;
 	margin-top: -15px;
+}
+
+/* Small screens */
+@media only screen and (max-width: 960px) {
+  .product-card {
+    min-width: 50%;
+  }
+
+  .product-card_info {
+    min-height: 150px;
+  }
+}
+
+/* Mobile/really small screens */ 
+@media only screen and (max-width: 540px) {
+  .cart-item_image {
+    width: 90px;
+    height: 90px;
+    margin-right: 0;
+  }
 }

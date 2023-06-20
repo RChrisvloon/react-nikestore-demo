@@ -37,4 +37,8 @@
   .product-card {
     min-width: 50%;
   }
+
+  .product-card_info {
+    min-height: 150px;
+  }
 }

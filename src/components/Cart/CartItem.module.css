@@ -71,3 +71,27 @@
 	opacity: 0.6;
   cursor: pointer;
 }
+
+
+/* Mobile screens */
+@media only screen and (max-width: 540px) {
+  .cart-item-information_wrapper {
+    padding: 0rem 0 1rem 5px;
+  }
+
+  .cart-item-information-title_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .size-amount_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cart-item-actions_wrapper{
+    margin-top: 0.5rem;
+  }
+}
