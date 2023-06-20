@@ -64,6 +64,6 @@
 /* Small screens */
 @media only screen and (max-width: 960px) {
 	.categoryMenu {
-		visibility: hidden;
+		display: none;
 	}
 }

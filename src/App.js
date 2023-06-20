@@ -5,10 +5,12 @@ import ErrorPage from './pages/ErrorPage';
 import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import RootLayout from './pages/RootLayout';
+import ProductDetailPage from './pages/ProductDetailPage';
+
+// Component imports
 
 // Other imports
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import ProductDetailPage from './pages/ProductDetailPage';
 
 const router = createBrowserRouter([
 	{
@@ -16,12 +18,12 @@ const router = createBrowserRouter([
 		element: <RootLayout />,
 		errorElement: <ErrorPage />,
 		children: [
-			{ path: '/', element: <HomePage /> },
+			{ index: true, element: <HomePage /> },
 			{
 				path: '/products',
 				element: <ProductsPage />,
+				children: [{ path: ':productId', element: <ProductDetailPage /> }],
 			},
-			{ path: '/products/:productId', element: <ProductDetailPage /> },
 			{ path: '/auth', element: <AuthPage /> },
 			{ path: '/profile', element: <ProfilePage /> },
 		],

@@ -1,6 +1,6 @@
 // React (Redux) imports
 import { Fragment, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCartData, sendCartData } from '../store/actions/cartActions';
 
@@ -40,6 +40,7 @@ const RootLayout = () => {
 
 	return (
 		<Fragment>
+			<ScrollRestoration />
 			{cartIsVisible && <Cart />}
 			{notification && (
 				<Notification
@@ -49,7 +50,7 @@ const RootLayout = () => {
 				/>
 			)}
 			<Header />
-			<div className='content'>
+			<div className="content">
 				<Outlet />
 			</div>
 			<Footer />

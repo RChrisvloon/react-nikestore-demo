@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 // Component imports
 import DetailedProduct from '../components/ProductDetailPage/DetailedProduct';
+import BackNavigation from '../components/common/BackNavigation/BackNavigation';
 
 const ProductDetailPage = () => {
 	const params = useParams();
@@ -13,6 +14,7 @@ const ProductDetailPage = () => {
 
 	return (
 		<Fragment>
+			<BackNavigation relativeToPath={true} />
 			<div className="content-inner">
 				<DetailedProduct productId={productId} />
 			</div>

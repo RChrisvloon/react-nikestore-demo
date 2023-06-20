@@ -21,3 +21,10 @@
 .íntro-subSection p {
 	line-height: 1.5;
 }
+
+/* Small screens */
+@media only screen and (max-width: 880px) {
+  .intro-section {
+    margin: 0 0 3rem 0;
+  }
+}

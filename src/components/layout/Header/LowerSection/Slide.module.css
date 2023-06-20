@@ -13,3 +13,10 @@
 .slide span {
   cursor: pointer;
 }
+
+/* Small screens */
+@media only screen and (max-width: 880px) {
+  .slide {
+    padding: 1rem 10px 1rem 10px;
+  }
+}

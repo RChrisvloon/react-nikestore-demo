@@ -1,5 +1,5 @@
 // React (Redux) imports
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import useGetProduct from '../../hooks/use-getProduct';
 import ProductImageSection from '../common/Product/ProductImageSection';
@@ -8,6 +8,7 @@ import DUMMY_SIZES from '../../data/DummySizes';
 
 // Component imports
 import SizePicker from '../ProductsPage/ProductModal/SizePicker';
+import BackNavigation from '../common/BackNavigation/BackNavigation';
 
 // Asset imports
 import classes from './DetailedProduct.module.css';
@@ -72,37 +73,43 @@ const DetailedProduct = (props) => {
 	};
 
 	return (
-		<div className={classes['product_wrapper']}>
-			<ProductImageSection product={product} />
-			<div className={classes['product-information_wrapper']}>
-				<div>
-					<h1 className={classes['product_title']}>{product.title}</h1>
-					<p className={classes['product_subTitle']}>{product.description}</p>
-				</div>
-				<div className={classes['product-price_wrapper']}>
-					<p className={classes['product_price']}>
-						{product.discountedPrice && `$${product.discountedPrice}`}
-						<span className={`${product.discountedPrice && 'discount_line'}`}>${product.price}</span>
-					</p>
-					{product.discountedPrice && (
-						<p className={'discount_styling'}>{product.discountPercentage}% off</p>
-					)}
-				</div>
-				<SizePicker onSizeSelect={handleSizeSelect} />
-				<div className={'order-buttons'}>
-					<button
-						className={'button-order button-order_black'}
-						onClick={cartItemAddHandler}
-						disabled={isAddingToBag ? true : addToCartSuccess ? true : ''}
-					>
-						{isAddingToBag ? 'Adding...' : addToCartSuccess ? 'Successfully added to bag!' : 'Add to bag'}
-					</button>
-					<button className={'button-order button-order_white'}>
-						Favourite <img src={heart} alt="Heart icon" />
-					</button>
+		<Fragment>
+			<div className={classes['product_wrapper']}>
+				<ProductImageSection product={product} />
+				<div className={classes['product-information_wrapper']}>
+					<div>
+						<h1 className={classes['product_title']}>{product.title}</h1>
+						<p className={classes['product_subTitle']}>{product.description}</p>
+					</div>
+					<div className={classes['product-price_wrapper']}>
+						<p className={classes['product_price']}>
+							{product.discountedPrice && `$${product.discountedPrice}`}
+							<span className={`${product.discountedPrice && 'discount_line'}`}>${product.price}</span>
+						</p>
+						{product.discountedPrice && (
+							<p className={'discount_styling'}>{product.discountPercentage}% off</p>
+						)}
+					</div>
+					<SizePicker onSizeSelect={handleSizeSelect} />
+					<div className={'order-buttons'}>
+						<button
+							className={'button-order button-order_black'}
+							onClick={cartItemAddHandler}
+							disabled={isAddingToBag ? true : addToCartSuccess ? true : ''}
+						>
+							{isAddingToBag
+								? 'Adding...'
+								: addToCartSuccess
+								? 'Successfully added to bag!'
+								: 'Add to bag'}
+						</button>
+						<button className={'button-order button-order_white'}>
+							Favourite <img src={heart} alt="Heart icon" />
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</Fragment>
 	);
 };
 

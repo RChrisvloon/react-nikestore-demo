@@ -31,7 +31,6 @@ const uiSlice = createSlice({
 			};
 		},
     clearNotification(state) {
-      console.log('Kanker');
       state.notification = null;
     }
 	},
