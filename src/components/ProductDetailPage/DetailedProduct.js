@@ -8,7 +8,6 @@ import DUMMY_SIZES from '../../data/DummySizes';
 
 // Component imports
 import SizePicker from '../ProductsPage/ProductModal/SizePicker';
-import BackNavigation from '../common/BackNavigation/BackNavigation';
 
 // Asset imports
 import classes from './DetailedProduct.module.css';
