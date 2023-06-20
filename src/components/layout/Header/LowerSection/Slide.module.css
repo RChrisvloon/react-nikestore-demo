@@ -18,6 +18,6 @@
 /* Small screens */
 @media only screen and (max-width: 880px) {
   .slide {
-    padding: 1rem 5px 1rem 5px;
+    padding: 1rem 0 1rem 0;
   }
 }
