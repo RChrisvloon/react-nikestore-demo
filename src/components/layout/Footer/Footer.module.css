@@ -1,5 +1,131 @@
 .footer {
-  min-height: 300px;
-  background-color: black;
-  z-index: 3;
+	min-height: 300px;
+	background-color: #111;
+	z-index: 3;
+	margin-top: 2rem;
+}
+
+.body_wrapper {
+	margin: auto;
+	max-width: 1440px;
+	display: flex;
+	flex-direction: column;
+}
+
+.body {
+	color: #7e7e7e;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 3rem 2rem 0 2rem;
+}
+
+.highlighted {
+	color: white;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-family: 'Anton', sans-serif;
+}
+
+.highlighted > li {
+	font-size: 14px;
+}
+
+.nonHighlighted {
+	font-size: 12px;
+}
+
+.columns {
+	display: flex;
+	gap: 2rem;
+	justify-content: space-between;
+	min-width: 60%;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.column_title {
+	color: white;
+	font-family: 'Anton', sans-serif;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.column_items > li {
+	margin-bottom: 1rem;
+}
+
+.column_items > li:hover {
+	cursor: pointer;
+	color: white;
+}
+
+/* Social menu styling */
+.socialMenu {
+	padding: 0 0 1rem 0;
+}
+
+.socialMenu > ul {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+}
+
+.socialMenu > ul > li {
+	background-color: #7e7e7e;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.2s;
+}
+
+.socialMenu > ul > li:hover {
+	background-color: white;
+}
+
+.socialMenu > ul > li > a > img {
+	width: 20px;
+}
+
+/* Sub-footer styling */
+.sub_footer {
+	color: white;
+	padding: 1rem 2rem 0.5rem 2rem;
+}
+
+.sub_footer p {
+	color: #7e7e7e;
+	font-size: 12px;
+}
+
+/* Small screens */
+@media only screen and (max-width: 880px) {
+	.body {
+		flex-direction: column;
+		margin-bottom: 1rem;
+		margin: 0 5px 1rem 5px;
+		border-bottom: 1px #323232 solid;
+	}
+
+	.columns {
+		justify-content: space-between;
+		gap: 0.5rem;
+    flex-direction: column;
+	}
+
+  .columns > :first-child {
+    border-bottom: 1px solid #323232;
+    margin-bottom: 1rem;
+  }
+
+	.column:nth-last-child(-n + 3) {
+		min-height: 150px;    
+	}
 }

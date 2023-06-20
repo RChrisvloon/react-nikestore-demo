@@ -342,3 +342,11 @@ html {
 	background-color: white;
 	color: black;
 }
+
+
+/* Mobile screens */
+@media only screen and (max-width: 540px) {
+  .content-inner {
+    padding: 0 10px 0 10px;
+  }
+}
