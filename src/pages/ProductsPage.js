@@ -18,6 +18,7 @@ const ProductsPage = () => {
 	const toggleFilterMenu = () => {
 		dispatch(uiSliceActions.toggleFilterMenu());
 	};
+
 	return (
 		<Fragment>
 			<main>

@@ -1,25 +1,39 @@
 // React (Redux) imports
 import { Fragment } from 'react';
-
-// Component imports
-import Header from '../components/layout/Header/Header';
-import Footer from '../components/layout/Footer/Footer';
+import { useRouteError } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+// Component imports
+
 const ErrorPage = () => {
+	const error = useRouteError();
+	console.log(error, '1');
+
+	let title = `An error has occurred! (${error.status})`;
+	let message = 'Something went wrong!';
+
+	switch (error.status) {
+		case 500:
+			message = error.data.message;
+			break;
+		case 404:
+			message = 'Could not find page!';
+			break;
+		default:
+			break;
+	}
+
 	return (
 		<Fragment>
-			<Header />
 			<main className="errorContent">
 				<div>
-					<h1>We can't find the page you are looking for.</h1>
-					<h2>Sorry for the inconvenience</h2>
+					<h1>{title}</h1>
+					<h2>{message}</h2>
 					<p>
-						Go back to <Link>home page.</Link>
+						Go back to <Link to={'/'}>the home page.</Link>
 					</p>
 				</div>
 			</main>
-			<Footer />
 		</Fragment>
 	);
 };

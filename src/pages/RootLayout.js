@@ -1,6 +1,6 @@
 // React (Redux) imports
 import { Fragment, useEffect } from 'react';
-import { Outlet, ScrollRestoration } from 'react-router-dom';
+import { Outlet, ScrollRestoration, useNavigation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCartData, sendCartData } from '../store/actions/cartActions';
 
@@ -13,8 +13,10 @@ import Footer from '../components/layout/Footer/Footer';
 // Variable used for checking if cartData should be submitted to firebase upon reload.
 let isInitial = true;
 
-const RootLayout = () => {
+const RootLayout = ({ children }) => {
 	const dispatch = useDispatch();
+	const navigation = useNavigation();
+
 	const cartIsVisible = useSelector((state) => state.ui.cartIsVisible);
 	const cart = useSelector((state) => state.cart);
 	const notification = useSelector((state) => state.ui.notification);
@@ -51,7 +53,12 @@ const RootLayout = () => {
 			)}
 			<Header />
 			<div className="content">
-				<Outlet />
+				{navigation.state === 'loading' && (
+					<h1 style={{ margin: 'auto', marginBottom: '2rem' }}>Loading...</h1>
+				)}
+
+				{/* Either throw the regular content, or the errorpage given as a child*/}
+				{children ?? <Outlet />}
 			</div>
 			<Footer />
 		</Fragment>

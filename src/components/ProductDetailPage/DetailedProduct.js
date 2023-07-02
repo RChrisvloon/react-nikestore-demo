@@ -13,16 +13,13 @@ import SizePicker from '../ProductsPage/ProductModal/SizePicker';
 import classes from './DetailedProduct.module.css';
 import heart from '../../assets/heart.svg';
 
-const DetailedProduct = (props) => {
+const DetailedProduct = ({product}) => {
 	const dispatch = useDispatch();
 
 	// State variables
 	const [selectedSize, setSelectedSize] = useState(false);
 	const [isAddingToBag, setIsAddingToBag] = useState(false);
 	const [addToCartSuccess, setAddToCartSuccess] = useState(false);
-
-	// Fetch product data & Calculate discounted price
-	const product = useGetProduct(props.productId);
 
 	// Handler for shoe size selection
 	const handleSizeSelect = (size) => {

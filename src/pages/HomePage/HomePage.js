@@ -1,11 +1,11 @@
 // React (Redux) imports
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 // Asset imports
 import classes from './HomePage.module.css';
 import introImage from '../../assets/intro-image-homepage.webp';
 import ImageComponent from '../../components/common/ImageComponent/ImageComponent';
-import { Fragment } from 'react';
 
 const HomePage = () => {
 	return (

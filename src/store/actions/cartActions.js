@@ -31,6 +31,15 @@ export const sendCartData = (cart) => {
 
 		try {
 			await sendRequest();
+
+			// Request -- SUCCESS
+			dispatch(
+				uiSliceActions.showNotification({
+					status: 'success',
+					title: 'Success',
+					message: 'Sent cart data successfully!',
+				})
+			);
 		} catch (error) {
 			// Request - FAILED
 			dispatch(
@@ -41,15 +50,6 @@ export const sendCartData = (cart) => {
 				})
 			);
 		}
-
-		// Request -- SUCCESS
-		dispatch(
-			uiSliceActions.showNotification({
-				status: 'success',
-				title: 'Success',
-				message: 'Sent cart data successfully!',
-			})
-		);
 	};
 };
 
@@ -80,7 +80,7 @@ export const fetchCartData = () => {
 				return;
 			}
 
-      // Replace the current cart with the fetched items
+			// Replace the current cart with the fetched items
 			dispatch(cartSliceActions.replaceCart(cartData));
 		} catch (error) {
 			// Request - FAILED

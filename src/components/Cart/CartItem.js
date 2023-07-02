@@ -29,14 +29,14 @@ const CartItem = (props) => {
 	// Generate size & amount-options
 	const sizeOptions = DUMMY_SIZES.map((item) => {
 		return (
-			<option key={item} value={item}>
+			<option key={item} value={item} disabled={props.isCheckingOut && 'true'}>
 				EU {item}
 			</option>
 		);
 	});
 
 	const amountOptions = Array.from({ length: 10 }, (_, index) => (
-		<option key={index + 1} value={index + 1}>
+		<option key={index + 1} value={index + 1} disabled={props.isCheckingOut && 'true'}>
 			{index + 1}
 		</option>
 	));
@@ -113,7 +113,10 @@ const CartItem = (props) => {
 					<div className={classes['size-amount_wrapper']}>
 						<div className={classes['dropdown_wrapper']}>
 							<label>Size:</label>
-							<select defaultValue={props.size} onChange={sizeChangeHandler}>
+							<select
+								defaultValue={props.size}
+								onChange={sizeChangeHandler}
+							>
 								{sizeOptions}
 							</select>
 						</div>
@@ -128,7 +131,7 @@ const CartItem = (props) => {
 						<button>
 							<img src={heart} alt="" />
 						</button>
-						<button onClick={props.onRemove}>
+						<button onClick={props.onRemove} disabled={props.isCheckingOut && 'true'}>
 							<img src={trash} alt="" />
 						</button>
 					</div>

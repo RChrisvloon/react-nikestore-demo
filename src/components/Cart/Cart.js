@@ -79,6 +79,7 @@ const Cart = (props) => {
 					amount={item.amount}
 					size={item.selectedSize}
 					onRemove={cartItemRemoveHandler.bind(null, item.id, item.selectedSize)}
+          isCheckingOut={isCheckingout}
 				/>
 			))}
 		</ul>
