@@ -1,9 +1,33 @@
+// React (Redux) imports
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Firbase imports
+import { auth } from '../../../../firebase';
+import { signOut } from 'firebase/auth';
+
 // Asset Imports
 import classes from './TopBar.module.css';
 import jordan from '../../../../assets/jordan.svg';
 import converse from '../../../../assets/converse.svg';
+import AuthDetails from '../../../../services/AuthDetails';
+import { userSliceActions } from '../../../../store/slices/userSlice';
 
-const TopBar = (props) => {
+const TopBar = () => {
+	const dispatch = useDispatch();
+	const isLoggedIn = useSelector((state) => state.user.user);
+
+	const signOutHandler = (e) => {
+		e.preventDefault();
+
+		signOut(auth)
+			.then(() => {
+				// Successfully logged out
+				dispatch(userSliceActions.setLoggedOut());
+			})
+			.catch((error) => console.log(error));
+	};
+
 	return (
 		<div className={classes.topBar}>
 			<div className={classes.topBar_wrapper}>
@@ -33,8 +57,17 @@ const TopBar = (props) => {
 						<span>|</span>
 					</div>
 					<div className={classes.userMenu_item}>
-						<a href={'/'}>Sign in</a>
+						{!isLoggedIn && <Link to={'/auth'}>{'Sign in'}</Link>}
+						{isLoggedIn && <Link to={'/profile'}>{'Hello User'}</Link>}
+            <span>|</span>
 					</div>
+					{isLoggedIn && (
+						<div className={classes.userMenu_item}>
+							<a href="/#" onClick={signOutHandler}>
+								Sign out
+							</a>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

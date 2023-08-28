@@ -2,10 +2,11 @@
 import HomePage from './pages/HomePage/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ErrorPage from './pages/ErrorPage';
-import AuthPage from './pages/AuthPage';
+import AuthPage from './pages/Auth/AuthPage';
 import ProfilePage from './pages/ProfilePage';
-import RootLayout from './pages/RootLayout';
 import ProductDetailPage, { loader as productLoader } from './pages/ProductDetailPage';
+import RootLayout from './pages/Layouts/RootLayout';
+import AuthLayout from './pages/Layouts/AuthLayout';
 
 // Component imports
 
@@ -22,18 +23,19 @@ function App() {
 					<ErrorPage />
 				</RootLayout>
 			),
-			
 			children: [
 				{ index: true, element: <HomePage /> },
 				{
-					path: '/products',
-					element: <ProductsPage />,
+					path: 'products',
+					children: [
+						{ index: true, element: <ProductsPage /> },
+						{ path: ':productId', element: <ProductDetailPage />, loader: productLoader },
+					],
 				},
-				{ path: '/products/:productId', element: <ProductDetailPage />, loader: productLoader },
-				{ path: '/auth', element: <AuthPage /> },
 				{ path: '/profile', element: <ProfilePage /> },
 			],
 		},
+		{ path: '/auth', element: <AuthLayout />, children: [{ index: true, element: <AuthPage /> }] },
 	]);
 
 	return <RouterProvider router={router} />;

@@ -1,0 +1,15 @@
+.message {
+	padding: 0.5rem 0.5rem 1rem 0;
+}
+
+.error {
+	color: red;
+}
+
+.warning {
+	color: orangered;
+}
+
+.success {
+	color: green;
+}

@@ -1,0 +1,156 @@
+.content {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #dbeaff;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	width: 1100px;
+	height: 600px;
+	background-color: white;
+}
+
+.section_header{
+  padding: 1rem 2rem 0 2rem
+}
+
+.section_title {
+  font-size: 38px;
+  font-weight: 1000;
+  margin-bottom: 2rem;
+}
+
+.section_title-white {
+  color: white;
+}
+
+/* Left Section */
+.section-left {
+	width: 60%;
+	height: 100%;
+}
+
+.section-left_content {
+	display: flex;
+	flex-direction: column;
+	padding: 4rem;
+}
+
+.button_bigger {
+  font-size: 16px;
+  padding: 1rem 3rem 1rem 3rem;
+  text-transform: uppercase;
+}
+
+.section-left-bottom_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.section-left-bottom_wrapper p {
+  color: #C0C0C0;
+}
+.section-left-bottom_wrapper a {
+  font-weight: 1000;
+  color: #0ba1ec;
+}
+
+.joinWith_section {
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* Right Section */
+.section-right {
+	width: 40%;
+	height: 100%;
+  background-color: black;
+}
+
+.section-right_centered{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 9rem 2rem 4rem 2rem;
+}
+
+.section-right_centered p {
+  color: white;
+}
+
+.button_bigger-right {
+  margin-top: 2rem;
+  border: 2px solid white;
+}
+
+/* animation */
+.animated-down {
+  animation: slide-down 500ms ease-out forwards;
+}
+
+.animated-up {
+  animation: slide-up 500ms ease-out forwards;
+}
+
+@keyframes slide-down {
+	from {
+		opacity: 0;
+		transform: translateY(-3rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(3rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Small & Mobile screens */
+@media only screen and (max-width: 830px) {
+  .content {
+    align-items: normal;
+  }  
+  
+  .container {
+    flex-direction: column;
+  }
+
+  .section-left {
+    width: 100%;
+    height: 100%;
+  }
+
+  .section-right {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  .section-left_content {
+    padding: 4rem 1.5rem 4rem 1.5rem
+  }
+
+  .section_header{
+    padding: 1rem 1rem 0 1rem;
+  }
+}

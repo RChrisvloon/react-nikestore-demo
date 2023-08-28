@@ -23,7 +23,7 @@ export default ProductDetailPage;
 
 // Loader function for fetching product
 export async function loader({ request, params }) {
-	const id = params.productId - 1; // Firebase starts items at 0 & this only works properly if Firebase stores the products with id's starting at the lowest first
+	const id = params.productId - 1; // Firebase starts items at 0 & this only works properly if Firebase stores the products with id's starting at the lowest first (We don't have a proper database for this project)
 	const url = `https://react-http-b7d1c-default-rtdb.europe-west1.firebasedatabase.app/products/${id}.json`;
 
 	const fetchProduct = async () => {
@@ -39,6 +39,7 @@ export async function loader({ request, params }) {
 		return data;
 	};
 
+  // Try-catch for proper error handling (Otherwise the fetch might throw an error and we can never throw our custom error response)
 	try {
 		const product = await fetchProduct();
 

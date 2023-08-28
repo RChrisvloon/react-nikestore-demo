@@ -5,6 +5,7 @@ const initialState = {
 	productModalIsVisible: false,
 	filterMenuIsShown: false,
 	notification: null,
+	loggedIn: false,
 };
 
 const uiSlice = createSlice({
@@ -30,9 +31,12 @@ const uiSlice = createSlice({
 				message: action.payload.message,
 			};
 		},
-    clearNotification(state) {
-      state.notification = null;
-    }
+		clearNotification(state) {
+			state.notification = null;
+		},
+		setLoggedIn(state) {
+			state.loggedIn = true;
+		},
 	},
 });
 

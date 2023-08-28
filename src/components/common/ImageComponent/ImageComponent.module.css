@@ -70,6 +70,15 @@
   }
 }
 
+/* Nike headerlogo styling */
+.app-logo {
+	height: 59px;
+	width: 59px;
+	transform: scale(1.33);
+	margin-left: 0.75rem;
+	filter: grayscale(100%);
+}
+
 /* Mobile/really small screens */ 
 @media only screen and (max-width: 540px) {
   .cart-item_image {
