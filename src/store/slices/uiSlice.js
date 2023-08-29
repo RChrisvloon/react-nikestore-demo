@@ -15,12 +15,6 @@ const uiSlice = createSlice({
 		toggleCart(state) {
 			state.cartIsVisible = !state.cartIsVisible;
 		},
-		openProductModal(state) {
-			state.productModalIsVisible = true;
-		},
-		closeProductModal(state) {
-			state.productModalIsVisible = false;
-		},
 		toggleFilterMenu(state) {
 			state.filterMenuIsShown = !state.filterMenuIsShown;
 		},
@@ -33,9 +27,6 @@ const uiSlice = createSlice({
 		},
 		clearNotification(state) {
 			state.notification = null;
-		},
-		setLoggedIn(state) {
-			state.loggedIn = true;
 		},
 	},
 });

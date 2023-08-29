@@ -26,6 +26,7 @@ import FormInput from '../../components/common/FormInput/FormInput';
 
 // TODO -- Create reuseable inputfield-component & seperate login and signup-content
 // TODO -- Move sign up/in-functionality to other services folder.
+// TODO -- MOVE LOGIC TO AuthPage.js
 const AuthLayout = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();

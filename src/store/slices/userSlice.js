@@ -3,9 +3,6 @@ import { auth } from '../../firebase';
 
 const initialState = {
 	user: null,
-  email: '',
-  fullName: '',
-  password: ''
 };
 
 const userSlice = createSlice({
@@ -14,11 +11,13 @@ const userSlice = createSlice({
 	reducers: {
 		setLoggedIn(state) {
 			const userData = auth.currentUser;
+
 			state.user = {
 				displayName: userData.displayName,
 				email: userData.email,
 				photoURL: userData.photoURL,
 				emailVerified: userData.emailVerified,
+        createdAt: userData.metadata.creationTime,
 			};
 		},
 		setLoggedOut(state) {

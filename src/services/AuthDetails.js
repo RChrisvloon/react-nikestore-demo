@@ -15,7 +15,7 @@ const AuthDetails = () => {
 	useEffect(() => {
 		const listen = onAuthStateChanged(auth, (user) => {
 			if (user) {
-				dispatch(userSliceActions.setLoggedIn({ email: user.email, displayName: user.displayName }));
+				dispatch(userSliceActions.setLoggedIn());
 			}
 
 			return () => {

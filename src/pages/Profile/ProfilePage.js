@@ -1,7 +1,7 @@
 // React (Redux) imports
-import { Fragment, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import ProfileHeader from '../../components/ProfilePage/ProfileHeader';
+import ProfileFavourites from '../../components/ProfilePage/ProfileFavourites';
 
 const ProfilePage = () => {
 	const user = useSelector((state) => state.user.user);
@@ -16,12 +16,11 @@ const ProfilePage = () => {
 	}
 
 	return (
-		<Fragment>
-			<div className="content-inner">
-				<h1>Profile page</h1>
-				<p>{JSON.stringify(user)}</p>
-			</div>
-		</Fragment>
+		<div className="content-inner">
+			{/* <p>{JSON.stringify(user)}</p> */}
+			<ProfileHeader />
+			<ProfileFavourites />
+		</div>
 	);
 };
 

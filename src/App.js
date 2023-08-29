@@ -3,14 +3,14 @@ import HomePage from './pages/HomePage/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ErrorPage from './pages/ErrorPage';
 import AuthPage from './pages/Auth/AuthPage';
-import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/Profile/ProfilePage';
 import ProductDetailPage, { loader as productLoader } from './pages/ProductDetailPage';
+
+// Component imports
 import RootLayout from './pages/Layouts/RootLayout';
 import AuthLayout from './pages/Layouts/AuthLayout';
 
-// Component imports
-
-// Other imports
+// React (Redux) imports
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 function App() {

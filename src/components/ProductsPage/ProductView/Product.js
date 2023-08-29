@@ -10,20 +10,18 @@ import classes from './Product.module.css';
 const Product = (props) => {
 	const navigate = useNavigate();
 
-	const openModal = () => {
+	const goToProduct = () => {
 		// Check if clicked productId exists
 		if (!props.id) {
 			window.alert('Product id could not be found!');
 			return;
 		}
 
-		// Open the modal window
-		// props.openModal(props.id);
 		navigate('/products/' + props.id);
 	};
 
 	return (
-		<div className={classes['product-card']} onClick={openModal}>
+		<div className={classes['product-card']} onClick={goToProduct}>
 			<ImageComponent
 				className={'product-card_img'}
 				src={props.image}

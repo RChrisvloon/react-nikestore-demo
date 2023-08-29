@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 import classes from './BackNavigation.module.css';
 import arrowLeft from '../../../assets/left-arrow.svg';
 
-/**
- * Represents a back-button navigation component with a link to a previous page.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {boolean} props.relativeToPath - Whether the link should return relative to the path or route.
- * @returns {React.JSX.Element} The rendered back navigation component.
- */
 const BackNavigation = (props) => {
 	return (
 		/**
