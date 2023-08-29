@@ -10,12 +10,11 @@ import { signOut } from 'firebase/auth';
 import classes from './TopBar.module.css';
 import jordan from '../../../../assets/jordan.svg';
 import converse from '../../../../assets/converse.svg';
-import AuthDetails from '../../../../services/AuthDetails';
 import { userSliceActions } from '../../../../store/slices/userSlice';
 
 const TopBar = () => {
 	const dispatch = useDispatch();
-	const isLoggedIn = useSelector((state) => state.user.user);
+	const user = useSelector((state) => state.user.user);
 
 	const signOutHandler = (e) => {
 		e.preventDefault();
@@ -57,11 +56,11 @@ const TopBar = () => {
 						<span>|</span>
 					</div>
 					<div className={classes.userMenu_item}>
-						{!isLoggedIn && <Link to={'/auth'}>{'Sign in'}</Link>}
-						{isLoggedIn && <Link to={'/profile'}>{'Hello User'}</Link>}
+						{!user && <Link to={'/auth'}>{'Sign in'}</Link>}
+						{user && <Link to={'/profile'}>{`Hello ${user.displayName.split(" ")[0]}`}</Link>}
             <span>|</span>
 					</div>
-					{isLoggedIn && (
+					{user && (
 						<div className={classes.userMenu_item}>
 							<a href="/#" onClick={signOutHandler}>
 								Sign out

@@ -17,7 +17,6 @@ const ProfilePage = () => {
 
 	return (
 		<div className="content-inner">
-			{/* <p>{JSON.stringify(user)}</p> */}
 			<ProfileHeader />
 			<ProfileFavourites />
 		</div>

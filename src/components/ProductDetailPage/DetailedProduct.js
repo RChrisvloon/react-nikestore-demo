@@ -1,7 +1,6 @@
 // React (Redux) imports
 import { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import useGetProduct from '../../hooks/use-getProduct';
 import ProductImageSection from '../common/Product/ProductImageSection';
 import { cartSliceActions } from '../../store/slices/cartSlice';
 import DUMMY_SIZES from '../../data/DummySizes';
