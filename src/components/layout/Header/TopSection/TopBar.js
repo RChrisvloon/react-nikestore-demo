@@ -57,7 +57,7 @@ const TopBar = () => {
 					</div>
 					<div className={classes.userMenu_item}>
 						{!user && <Link to={'/auth'}>{'Sign in'}</Link>}
-						{user && <Link to={'/profile'}>{`Hello ${user.displayName.split(" ")[0]}`}</Link>}
+						{user && <Link to={'/profile'}>{`Hello ${user.displayName ? user.displayName.split(" ")[0] : 'UNDEFINED'}`}</Link>}
             <span>|</span>
 					</div>
 					{user && (

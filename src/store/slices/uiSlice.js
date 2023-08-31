@@ -5,7 +5,7 @@ const initialState = {
 	productModalIsVisible: false,
 	filterMenuIsShown: false,
 	notification: null,
-	loggedIn: false,
+  profileEditorisIsShown: false
 };
 
 const uiSlice = createSlice({
@@ -27,6 +27,9 @@ const uiSlice = createSlice({
 		},
 		clearNotification(state) {
 			state.notification = null;
+		},
+		toggleProfileEditor(state) {
+			state.profileEditorisIsShown = !state.profileEditorisIsShown;
 		},
 	},
 });

@@ -1,32 +1,6 @@
-.cart_wrapper{
-  min-height: 500px;
-  display: flex;
-  flex-direction: column;
-}
-
 .empty-state_text{
   margin-top: auto;
   text-align: center;
-}
-
-/* Cart Header */
-.cart-header-main_wrapper {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 0.5rem;
-	border-bottom: 1px solid rgb(229, 229, 229);
-  margin-bottom: 1rem;
-}
-
-.cart-header-sub_wrapper{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.cart-header_text{
-  font-size: 22px;
-  font-weight: 500;
 }
 
 /* Items section */

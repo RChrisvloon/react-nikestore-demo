@@ -1,26 +1,44 @@
 // React (Redux) imports
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiSliceActions } from '../../store/slices/uiSlice';
+
+// Component imports
+import ImageComponent from '../common/ImageComponent/ImageComponent';
 
 // Asset imports
 import classes from './ProfileHeader.module.css';
 import defaultAvatar from '../../assets/default_avatar.png';
+import editIcon from '../../assets/editPencil.svg';
+import ProfileEditor from './ProfileEditor';
 
 const ProfileHeader = () => {
+	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user.user);
+	const showProfileEditor = useSelector((state) => state.ui.profileEditorisIsShown);
+
+	const toggleProfileEditorHandler = () => {
+		dispatch(uiSliceActions.toggleProfileEditor());
+	};
 
 	return (
 		<section className={classes.wrapper}>
-			<a className={classes.imageWrapper} href={'/#'}>
-				<img
-					className={classes.profileImg}
+			<div className={classes.imageWrapper}>
+				<ImageComponent
 					src={user.photoURL ? user.photoURL : defaultAvatar}
-					alt={'Placeholder profilepicture'}
+					className={'profileImg'}
+					alt={'Profile Picture'}
+					onClick={toggleProfileEditorHandler}
 				/>
-			</a>
+			</div>
 			<div className={classes.subHeader}>
-				<h2>{user.displayName || 'Your full name has not been set.'}</h2>
+				<div className={classes.nameContainer}>
+					<h2>{user.displayName || 'Full Name not found'}</h2>
+					<img src={editIcon} alt={'Edit profile.'} onClick={toggleProfileEditorHandler} />
+				</div>
 				<p>Nike member since {user.createdAt}</p>
 			</div>
+
+			{showProfileEditor && <ProfileEditor onClose={toggleProfileEditorHandler} />}
 		</section>
 	);
 };

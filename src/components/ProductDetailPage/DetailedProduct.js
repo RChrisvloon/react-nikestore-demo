@@ -12,7 +12,7 @@ import SizePicker from '../ProductsPage/ProductModal/SizePicker';
 import classes from './DetailedProduct.module.css';
 import heart from '../../assets/heart.svg';
 
-const DetailedProduct = ({product}) => {
+const DetailedProduct = ({ product }) => {
 	const dispatch = useDispatch();
 
 	// State variables
@@ -86,7 +86,7 @@ const DetailedProduct = ({product}) => {
 						)}
 					</div>
 					<SizePicker onSizeSelect={handleSizeSelect} />
-					<div className={'order-buttons'}>
+					<div className={'buttonSection'}>
 						<button
 							className={'button-order button-order_black'}
 							onClick={cartItemAddHandler}

@@ -1,14 +1,26 @@
 // Asset imports
+import React from 'react';
 import classes from './FormInput.module.css';
 
-const FormInput = ({ label, type, id, name, value, onChange, icon }) => {
+const FormInput = React.forwardRef((props, ref) => {
 	return (
 		<div className={classes['input_wrapper']}>
-			<input key={id} type={type} id={id} name={name} value={value} required onChange={onChange} />
-			<label htmlFor={id}>{label}</label>
-			<img src={icon} alt={`${label} Icon`} />
+			<input
+				ref={ref}
+				key={props.id}
+				type={props.type}
+				id={props.id}
+				name={props.name}
+				defaultValue={props.defaultValue}
+				required
+				onChange={props.onChange}
+				disabled={props.disabled ? true : false}
+				placeholder=""
+			/>
+			<label htmlFor={props.id}>{props.label}</label>
+			<img src={props.icon} alt={`${props.label} Icon`} />
 		</div>
 	);
-};
+});
 
 export default FormInput;

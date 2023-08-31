@@ -6,7 +6,7 @@ import classes from './Spinner.module.css';
 const Spinner = () => {
 	return (
 		<div className={classes.spinner_wrapper}>
-			<img className={classes.spinner} src={spinner} alt="Loading spinner.." />
+			<img className={classes.spinner} src={spinner} title={'The imageURL could be incorrect or does not exist.'} alt="Loading spinner.." />
 		</div>
 	);
 };

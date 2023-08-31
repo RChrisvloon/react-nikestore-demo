@@ -6,6 +6,7 @@ import ProfileFavourites from '../../components/ProfilePage/ProfileFavourites';
 const ProfilePage = () => {
 	const user = useSelector((state) => state.user.user);
 
+	// User is not logged in
 	if (!user) {
 		return (
 			<div className="errorContent">

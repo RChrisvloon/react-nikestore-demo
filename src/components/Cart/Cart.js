@@ -7,10 +7,10 @@ import { uiSliceActions } from '../../store/slices/uiSlice';
 // Component imports
 import Modal from '../common/Modal/Modal';
 import CartItem from './CartItem';
+import ModalHeader from '../common/Modal/ModalHeader';
 
 // Asset imports
 import classes from './Cart.module.css';
-import cross from '../../assets/cross.svg';
 
 const Cart = (props) => {
 	// State variables
@@ -79,7 +79,7 @@ const Cart = (props) => {
 					amount={item.amount}
 					size={item.selectedSize}
 					onRemove={cartItemRemoveHandler.bind(null, item.id, item.selectedSize)}
-          isCheckingOut={isCheckingout}
+					isCheckingOut={isCheckingout}
 				/>
 			))}
 		</ul>
@@ -87,41 +87,35 @@ const Cart = (props) => {
 
 	return (
 		<Modal onClose={toggleCartHandler}>
-			<div className={classes['cart_wrapper']}>
-				<div className={classes['cart-header-main_wrapper']}>
-					<div className={classes['cart-header-sub_wrapper']}>
-						<h2 className={classes['cart-header_text']}>Your bag</h2>
-						<img
-							className={'modal-header_closeBtn'}
-							onClick={toggleCartHandler}
-							src={cross}
-							alt="Copyright by https://tablericons.com/"
-						/>
-					</div>
-				</div>
-				{!hasItems && (
-					<p className={classes['empty-state_text']}>
-						{checkoutIsSuccess ? 'Order has been placed!' : 'There are no items in your bag.'}
-					</p>
-				)}
-				{hasItems && <div className={classes['cart-items_wrapper']}>{cartItemsList}</div>}
-				<div className={classes.amount_wrapper}>
-					<h2>Total Amount: </h2>
-					<span>${totalAmount.toFixed(2)}</span>
-				</div>
-				<div className={'order-buttons'}>
-					<button
-						className={`button-order button-order_black ${!hasItems ? 'disabled' : ''}`}
-						onClick={checkoutHandler}
-						disabled={!hasItems ? true : false}
-					>
-						{isCheckingout
-							? 'Checking out...'
-							: checkoutIsSuccess
-							? 'Successfully checked out!'
-							: 'Checkout'}
-					</button>
-				</div>
+			<ModalHeader text={'Your Bag'} onClick={toggleCartHandler} />
+      
+			{/* Show userfeedback when cart is empty */}
+			{!hasItems && (
+				<p className={classes['empty-state_text']}>
+					{checkoutIsSuccess ? 'Order has been placed!' : 'There are no items in your bag.'}
+				</p>
+			)}
+
+			{/* Show items when cart is not empty */}
+			{hasItems && <div className={classes['cart-items_wrapper']}>{cartItemsList}</div>}
+
+			{/* Checkout information & Buttons */}
+			<div className={classes.amount_wrapper}>
+				<h2>Total Amount: </h2>
+				<span>${totalAmount.toFixed(2)}</span>
+			</div>
+			<div className={'buttonSection'}>
+				<button
+					className={`button-order button-order_black ${!hasItems ? 'disabled' : ''}`}
+					onClick={checkoutHandler}
+					disabled={!hasItems ? true : false}
+				>
+					{isCheckingout
+						? 'Checking out...'
+						: checkoutIsSuccess
+						? 'Successfully checked out!'
+						: 'Checkout'}
+				</button>
 			</div>
 		</Modal>
 	);

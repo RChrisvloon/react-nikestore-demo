@@ -17,21 +17,24 @@ const userSlice = createSlice({
 				email: userData.email,
 				photoURL: userData.photoURL,
 				emailVerified: userData.emailVerified,
-        createdAt: userData.metadata.creationTime,
+				createdAt: userData.metadata.creationTime,
 			};
+		},
+		setPhotoURL(state, action) {
+			state.user.photoURL = action.payload;
 		},
 		setLoggedOut(state) {
 			state.user = null;
 		},
-    setEmail(state, action){
-      state.email = action.payload;
-    },
-    setFullName(state, action) {
-      state.fullName = action.payload;
-    },
-    setPassword(state, action) {
-      state.password = action.payload;
-    }
+		setEmail(state, action) {
+			state.email = action.payload;
+		},
+		setFullName(state, action) {
+			state.fullName = action.payload;
+		},
+		setPassword(state, action) {
+			state.password = action.payload;
+		},
 	},
 });
 

@@ -59,6 +59,13 @@
 	margin-top: -15px;
 }
 
+/* Profile styling */
+.profileImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Small screens */
 @media only screen and (max-width: 960px) {
   .product-card {

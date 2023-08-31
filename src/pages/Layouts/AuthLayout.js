@@ -14,6 +14,8 @@ import {
 
 // Component imports
 import ImageComponent from '../../components/common/ImageComponent/ImageComponent';
+import FormInput from '../../components/common/FormInput/FormInput';
+import Message from '../../components/common/Feedback/Message';
 
 // Asset imports
 import classes from './AuthLayout.module.css';
@@ -21,8 +23,6 @@ import nikeLogo from '../../assets/nike.svg';
 import userIcon from '../../assets/user.svg';
 import mailIcon from '../../assets/mail.svg';
 import eyeIcon from '../../assets/eye.svg';
-import Message from '../../components/common/Feedback/Message';
-import FormInput from '../../components/common/FormInput/FormInput';
 
 // TODO -- Create reuseable inputfield-component & seperate login and signup-content
 // TODO -- Move sign up/in-functionality to other services folder.
@@ -59,7 +59,7 @@ const AuthLayout = () => {
 		}, 300);
 	}, []);
 
-	// Function for managing messages
+	// Function for showing error/success messages
 	const messageHandler = (status, text) => {
 		setMessageStatus(status);
 		setMessageText(text);
@@ -77,7 +77,6 @@ const AuthLayout = () => {
 
 		signInWithEmailAndPassword(auth, email, password)
 			.then(() => {
-				// Display success message & redirect to home page
 				messageHandler('success', 'Logged in successfully! You will be redirected soon.');
 
 				setTimeout(() => {
@@ -93,7 +92,6 @@ const AuthLayout = () => {
 	const signUpHandler = (e) => {
 		e.preventDefault();
 
-		// Check if full name is provided
 		if (fullName === null || fullName === '') {
 			messageHandler('error', 'Please enter a valid full name.');
 			return;
@@ -103,19 +101,19 @@ const AuthLayout = () => {
 			.then((userCredential) => {
 				const user = userCredential.user;
 
-				// Update display name with entered full name
+				// Try to set displayName to full name
 				updateProfile(user, { displayName: fullName })
 					.then(() => {
-						// Display success message & redirect to profile page
 						messageHandler('success', 'Signed up successfully! You will be redirected soon.');
-
-						setTimeout(() => {
-							navigate('/profile');
-						}, 2500);
 					})
 					.catch(() => {
-						messageHandler('warning', 'Full name could not be updated, but you will be logged in.');
+						messageHandler('warning', 'Full name could not be set, but you will be logged in.');
 					});
+
+				// Navigate to profilepage after setting displayName to full name
+				setTimeout(() => {
+					navigate('/profile');
+				}, 2500);
 			})
 			.catch(() => {
 				messageHandler('error', 'Could not sign up! Please try again.');
@@ -145,7 +143,7 @@ const AuthLayout = () => {
 									type="text"
 									id="fullName"
 									name="fullName"
-									value={fullName}
+									defaultValue={fullName}
 									onChange={(e) => dispatch(userSliceActions.setFullName(e.target.value))}
 									icon={userIcon}
 								/>
@@ -155,7 +153,7 @@ const AuthLayout = () => {
 								type="email"
 								id="email"
 								name="email"
-								value={email}
+								defaultValue={email}
 								onChange={(e) => dispatch(userSliceActions.setEmail(e.target.value))}
 								icon={mailIcon}
 							/>
@@ -164,7 +162,7 @@ const AuthLayout = () => {
 								type="password"
 								id="password"
 								name="password"
-								value={password}
+								defaultValue={password}
 								onChange={(e) => dispatch(userSliceActions.setPassword(e.target.value))}
 								icon={eyeIcon}
 							/>

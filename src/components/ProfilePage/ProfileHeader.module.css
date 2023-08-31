@@ -7,28 +7,42 @@
 }
 
 .imageWrapper {
+  min-width: 96px;
   width: 96px;
   height: 96px;
-  background-color: #e5e5e5;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-}
-
-.profileImg {
-  width: 96px;
+	background-color: #e5e5e5;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+  cursor: pointer;
 }
 
 /* Subheader styling */
 .subHeader {
-  margin-top: 16px;
+	margin-top: 16px;
 }
 
 .subHeader h2 {
-  font-size: 30px;
+	font-size: 30px;
 }
 
 .subHeader p {
-  margin-top: 10px;
-  color: grey;
+	margin-top: 10px;
+	color: grey;
+}
+
+.nameContainer {
+	display: flex;
+  flex-direction: row;
+	gap: 0.5rem;
+}
+
+.nameContainer img {
+	width: 20px;
+	opacity: 0.5;
+  align-self: end;
+}
+
+.nameContainer img:hover {
+	cursor: pointer;
 }

@@ -1,21 +1,22 @@
 // React (Redux) imports
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { userSliceActions } from '../store/slices/userSlice';
 
 // Firebase imports
 import { auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
-import { userSliceActions } from '../store/slices/userSlice';
 
 const AuthDetails = () => {
 	const dispatch = useDispatch();
 
-  // TODO - Add (loading) spinner before logged in state is shown to user
-
 	useEffect(() => {
+		// Observe the user's login state
 		const listen = onAuthStateChanged(auth, (user) => {
 			if (user) {
 				dispatch(userSliceActions.setLoggedIn());
+			} else {
+				dispatch(userSliceActions.setLoggedOut());
 			}
 
 			return () => {
